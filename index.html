@@ -28,14 +28,18 @@
             align-items: center;
             margin-top: 10px;
             text-align: center;
+            overflow: hidden; /* Evita que el recorte se salga */
         }
 
         header img {
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 10px;
+            /* AQUÍ ESTÁ EL TRUCO PARA ACHICAR LOS MÁRGENES */
+            width: 400px;           /* Tamaño real que quieres que ocupe */
+            height: 250px;          /* Altura del recorte */
+            object-fit: cover;      /* Hace zoom para eliminar los bordes */
+            object-position: center 40%; /* Centra la imagen en el logo */
+            
             filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.3));
-            transition: transform 0.3s ease;
+            margin-bottom: -40px;   /* Acerca el logo al reproductor */
         }
 
         header img:hover {
@@ -189,6 +193,7 @@
 
 </body>
 </html>
+
 
 
 
