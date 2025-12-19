@@ -2,13 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zonda FM - Sentí el Viento</title>
     
     <link rel="icon" type="image/png" href="./logo.png?v=1">
-    <link rel="shortcut icon" type="image/png" href="./logo.png?v=1">
-    <link rel="apple-touch-icon" href="./logo.png?v=1">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -22,22 +19,18 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .logo-header {
             width: 100%;
             max-width: 400px;
             text-align: center;
-            margin-bottom: 25px;
-            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         .logo-header img {
-            width: 160px;
+            width: 140px;
             height: auto;
-            display: block;
-            margin: 0 auto;
             filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4));
         }
 
@@ -48,16 +41,14 @@
             text-transform: uppercase;
             color: #ff9d00;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
             font-style: italic;
         }
 
-        /* CONTENEDORES */
         .main-content {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
-            width: 100%;
+            width: 98%;
             max-width: 1200px;
             justify-content: center;
         }
@@ -68,32 +59,23 @@
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 10px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-            display: flex;
-            flex-direction: column;
+            overflow: hidden;
         }
 
-        /* Ajustes específicos para que el video no se corte */
+        /* VIDEO */
         .video-container { 
             flex: 2; 
-            min-width: 300px; 
-            width: 100%;
+            min-width: 320px; 
+            padding: 10px;
         }
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Relación 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             border-radius: 12px;
             overflow: hidden;
-        }
-
-        /* Ajustes para el Chat */
-        .chat-container { 
-            flex: 1; 
-            min-width: 300px; 
-            height: 500px; /* Altura en PC */
         }
 
         iframe {
@@ -105,45 +87,35 @@
             border: none;
         }
 
-        .chat-container iframe {
-            position: relative; /* El chat no necesita el wrapper 16:9 */
-            border-radius: 12px;
+        /* NUEVO CHAT GRATUITO (MINNIT) */
+        .chat-container { 
+            flex: 1; 
+            min-width: 320px; 
+            height: 500px; 
+            background: rgba(0, 0, 0, 0.2);
         }
 
-        /* BOTONES */
         .social-bar {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             margin: 25px 0;
             width: 100%;
             max-width: 600px;
-            justify-content: center;
         }
 
         .btn {
             text-decoration: none;
             color: white;
             background: rgba(255, 255, 255, 0.1);
-            padding: 12px 20px;
+            padding: 15px;
             border-radius: 50px;
-            transition: 0.3s;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             flex: 1;
-            font-size: 0.9rem;
         }
 
-        .btn-wsap {
-            background: #25d366;
-            animation: pulse-green 2s infinite;
-        }
-
-        .btn-kick:hover {
-            background: #53fc18;
-            color: black;
-            box-shadow: 0 0 20px rgba(83, 252, 24, 0.4);
-        }
+        .btn-wsap { background: #25d366; animation: pulse-green 2s infinite; }
 
         @keyframes pulse-green {
             0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -151,36 +123,10 @@
             100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* AJUSTES ESPECÍFICOS PARA MÓVIL */
         @media (max-width: 768px) {
-            body { padding: 5px; }
-            .logo-header { margin-bottom: 15px; }
-            .logo-header img { width: 120px; }
-            .slogan { font-size: 1.1rem; }
-            
-            .main-content { 
-                flex-direction: column; 
-                align-items: center; 
-                gap: 10px;
-            }
-
-            .video-container { width: 95%; padding: 5px; }
-            
-            /* El chat en móvil necesita una altura definida para ser visible */
-            .chat-container { 
-                width: 95%; 
-                height: 450px; 
-                padding: 5px;
-                display: block !important; /* Asegura visibilidad */
-            }
-
-            .social-bar { 
-                flex-direction: column; 
-                width: 90%; 
-                gap: 10px;
-            }
-            
-            .btn { width: 100%; padding: 15px; }
+            .main-content { flex-direction: column; }
+            .chat-container { height: 450px; width: 100%; }
+            .social-bar { flex-direction: column; padding: 0 20px; }
         }
     </style>
 </head>
@@ -194,33 +140,23 @@
     <div class="main-content">
         <div class="glass-panel video-container">
             <div class="video-wrapper">
-                <iframe 
-                    src="https://player.kick.com/zondafm" 
-                    allowfullscreen="true" 
-                    scrolling="no">
-                </iframe>
+                <iframe src="https://player.kick.com/zondafm" allowfullscreen="true"></iframe>
             </div>
         </div>
 
         <div class="glass-panel chat-container">
-            <iframe 
-                src="https://kick.com/zondafm/chatroom" 
-                height="100%" 
-                width="100%"
-                scrolling="yes">
-            </iframe>
+            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" style="border:none; width:90%; height:500px; max-height:90vh;" allowTransparency="true" data-minnitchatembed="1">
+            </iframe><p class="powered-by-minnit"><a href="https://minnit.chat" target="_blank">Chatroom embedded via Minnit Chat</a></p>
         </div>
     </div>
 
     <div class="social-bar">
         <a href="https://wa.me/2616574" class="btn btn-wsap" target="_blank">WhatsApp Zonda</a>
-        <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Ver en Kick</a>
+        <a href="https://kick.com/zondafm" class="btn" style="background: #53fc18; color: black;" target="_blank">Abrir Kick App</a>
     </div>
 
 </body>
 </html>
-
-
 
 
 
