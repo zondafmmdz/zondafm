@@ -17,142 +17,37 @@
     
     <style>
         * { box-sizing: border-box; }
-
         body {
-            margin: 0;
-            padding: 10px;
-            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 10px; font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1e1e2f 0%, #111111 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
             overflow-x: hidden;
         }
+        .logo-header { width: 100%; max-width: 400px; text-align: center; margin-bottom: 15px; margin-top: 10px; }
+        .logo-header img { width: 130px; height: auto; filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4)); }
+        .slogan { margin: 5px 0 0 0; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; color: #ff9d00; font-style: italic; }
 
-        .logo-header {
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            margin-bottom: 15px;
-            margin-top: 10px;
-        }
-
-        .logo-header img {
-            width: 130px;
-            height: auto;
-            filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4));
-        }
-
-        .slogan {
-            margin: 5px 0 0 0;
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #ff9d00;
-            letter-spacing: 2px;
-            font-style: italic;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        /* Botón APK con enlace actualizado */
-        .apk-download-bar {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 20px;
-        }
-
+        .apk-download-bar { width: 100%; max-width: 400px; margin-bottom: 20px; }
         .btn-apk {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-            color: #111;
-            text-decoration: none;
-            padding: 14px;
-            border-radius: 18px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-            border: 2px solid #ff9d00;
-            transition: transform 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%); color: #111;
+            text-decoration: none; padding: 14px; border-radius: 18px; font-weight: 800; font-size: 0.9rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); border: 2px solid #ff9d00;
         }
 
-        .btn-apk:active { transform: scale(0.96); }
-        .btn-apk img { width: 22px; height: auto; }
-
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            max-width: 1200px;
-            align-items: center;
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            width: 100%;
-            overflow: hidden;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-        }
-
+        .main-content { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1200px; align-items: center; }
+        .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; width: 100%; overflow: hidden; }
         .video-container { padding: 10px; }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: none;
-        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* Chatroom con altura fija para móvil */
-        .chat-container { 
-            height: 500px; 
-            display: flex;
-            background: rgba(0, 0, 0, 0.2);
-        }
+        /* Ajuste Chat para evitar pantalla blanca */
+        .chat-container { height: 500px; display: flex; background: rgba(0, 0, 0, 0.2); }
         .chat-container iframe { width: 100%; height: 100%; border: none; }
 
-        .tip-text {
-            font-size: 0.75rem;
-            color: #ccc;
-            margin-top: 8px;
-            text-align: center;
-            padding: 0 10px;
-        }
-
-        .social-bar {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 25px 0 40px 0;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .btn {
-            text-decoration: none;
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 16px;
-            border-radius: 50px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
+        .tip-text { font-size: 0.75rem; color: #ccc; margin-top: 8px; text-align: center; padding: 0 10px; }
+        .social-bar { display: flex; flex-direction: column; gap: 12px; margin: 25px 0 40px 0; width: 100%; max-width: 400px; }
+        .btn { text-decoration: none; color: white; background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 50px; font-weight: 600; text-align: center; }
         .btn-wsap { background: #25d366; animation: pulse-green 2s infinite; }
 
         @keyframes pulse-green {
@@ -161,14 +56,11 @@
             100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Ajustes Computadora */
         @media (min-width: 900px) {
             .main-content { flex-direction: row; align-items: stretch; }
             .video-container { flex: 2; }
             .chat-container { flex: 1; height: auto; min-height: 550px; }
             .social-bar { flex-direction: row; max-width: 600px; }
-            .apk-download-bar { max-width: 600px; }
-            .btn { flex: 1; }
         }
     </style>
 </head>
@@ -191,30 +83,40 @@
             <div class="video-wrapper">
                 <iframe src="https://player.kick.com/zondafm" allowfullscreen="true"></iframe>
             </div>
-            <p class="tip-text">💡 Tip: En la App móvil, activa el 'Modo Audio' para escuchar con pantalla bloqueada.</p>
+            <p class="tip-text">🔊 Para segundo plano: Abrir en Kick y activar 'Modo Audio'</p>
         </div>
 
         <div class="glass-panel chat-container">
-            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" allowtransparency="true"></iframe>
+            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed&external=1" allow="autoplay; fullscreen" allowtransparency="true"></iframe>
         </div>
     </div>
 
     <div class="social-bar">
         <a href="https://wa.me/2616574" class="btn btn-wsap" target="_blank">WhatsApp Zonda</a>
-        <a href="https://kick.com/zondafm" class="btn" style="background: #53fc18; color: black;" target="_blank">Ver en Kick</a>
+        <a href="https://kick.com/zondafm" class="btn" style="background: #53fc18; color: black;" target="_blank">Abrir en App Kick</a>
     </div>
 
     <script>
+        // Registrar Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('Zonda FM App Lista'))
-                .catch(err => console.log('Error de App', err));
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log(err));
             });
         }
+
+        // TRUCO PARA EVITAR PANTALLA BLANCA EN APP
+        // Detecta si el usuario hace clic en un link que intenta salir del chat
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a');
+            if (target && target.href && !target.href.includes(window.location.host)) {
+                // Si es un link externo, forzamos que lo abra en el navegador del sistema y no dentro de la app
+                window.open(target.href, '_system');
+            }
+        });
     </script>
 </body>
 </html>
+
 
 
 
