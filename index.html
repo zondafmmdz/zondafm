@@ -20,30 +20,28 @@
             min-height: 100vh;
         }
 
-        /* CONTENEDOR DEL LOGO CORREGIDO */
         .logo-header {
             width: 100%;
-            max-width: 600px;
+            max-width: 400px; /* Reduje un poco para que no sea gigante */
             text-align: center;
-            margin-bottom: -20px; /* Acerca el logo al reproductor */
+            margin-bottom: 20px;
         }
 
         .logo-header img {
-            width: 100%; /* Ocupa el ancho máximo disponible */
-            height: auto; /* Mantiene la proporción para que NO se corte */
+            width: 100%;
+            height: auto;
             display: block;
             margin: 0 auto;
             filter: drop-shadow(0px 4px 20px rgba(255, 157, 0, 0.4));
         }
 
-        /* CONTENEDOR PRINCIPAL */
         .main-content {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             width: 95%;
             max-width: 1200px;
-            margin-top: 10px;
+            justify-content: center;
         }
 
         .glass-panel {
@@ -54,17 +52,32 @@
             border-radius: 20px;
             padding: 15px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            overflow: hidden; /* Esto evita que el chat se salga de los bordes */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra el contenido verticalmente */
         }
 
-        .video-container { flex: 2; min-width: 320px; }
-        .chat-container { flex: 1; min-width: 300px; height: 500px; }
+        .video-container { 
+            flex: 2; 
+            min-width: 320px; 
+            min-height: 400px; /* Asegura altura para centrar el video */
+        }
+
+        .chat-container { 
+            flex: 1; 
+            min-width: 300px; 
+            height: 500px; 
+            padding: 0; /* Quitamos padding para que el chat pegue a los bordes */
+        }
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* Relación 16:9 */
             height: 0;
             border-radius: 12px;
             overflow: hidden;
+            width: 100%;
         }
 
         iframe {
@@ -97,8 +110,8 @@
         .btn-wsap:hover { background: #25d366; color: white; }
 
         @media (max-width: 768px) {
-            .chat-container { height: 400px; }
-            .social-bar { flex-direction: column; width: 80%; text-align: center; }
+            .chat-container { height: 450px; }
+            .social-bar { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -111,18 +124,18 @@
     <div class="main-content">
         <div class="glass-panel video-container">
             <div class="video-wrapper">
-                <iframe src="https://player.kick.com/zondafm" allowfullscreen="true"></iframe>
+                <iframe src="https://player.kick.com/zonda-fm" allowfullscreen="true"></iframe>
             </div>
         </div>
 
         <div class="glass-panel chat-container">
-            <iframe src="https://kick.com/zondafm/chatroom" height="100%" width="100%"></iframe>
+            <iframe src="https://kick.com/zonda-fm/chatroom" height="100%" width="100%"></iframe>
         </div>
     </div>
 
     <div class="social-bar">
         <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">WhatsApp</a>
-        <a href="https://kick.com/ZondaFM" class="btn btn-kick" target="_blank">Ver en Kick</a>
+        <a href="https://kick.com/zonda-fm" class="btn btn-kick" target="_blank">Ver en Kick</a>
     </div>
 
 </body>
