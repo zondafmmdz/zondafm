@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zonda FM - Sentí el Viento</title>
+    
     <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     
     <style>
@@ -20,45 +24,35 @@
             min-height: 100vh;
         }
 
-        /* CABECERA CON LOGO Y TEXTOS */
         .logo-header {
             width: 100%;
             max-width: 400px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             margin-top: 10px;
         }
 
         .logo-header img {
-            width: 160px; /* Tamaño del logo ajustado */
+            width: 180px;
             height: auto;
             display: block;
             margin: 0 auto;
             filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4));
         }
 
-        .main-title {
+        /* TEXTO SOLO: SENTÍ EL VIENTO */
+        .slogan {
             margin: 15px 0 0 0;
-            font-size: 2.2rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-size: 1.8rem;
+            font-style: italic;
+            font-weight: 300;
             letter-spacing: 2px;
             background: linear-gradient(to bottom, #ffffff, #ff9d00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .slogan {
-            margin: 0;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: #ff9d00;
-            font-weight: 300;
-            letter-spacing: 1px;
             opacity: 0.9;
         }
 
-        /* CONTENEDOR PRINCIPAL */
         .main-content {
             display: flex;
             flex-wrap: wrap;
@@ -103,7 +97,6 @@
             border: none;
         }
 
-        /* BOTONES SOCIALES */
         .social-bar {
             display: flex;
             gap: 15px;
@@ -144,11 +137,9 @@
             100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* RESPONSIVE MÓVIL */
         @media (max-width: 768px) {
-            .main-title { font-size: 1.8rem; }
-            .slogan { font-size: 1rem; }
-            .logo-header img { width: 120px; }
+            .slogan { font-size: 1.4rem; }
+            .logo-header img { width: 140px; }
             .main-content { flex-direction: column; align-items: center; }
             .video-container, .chat-container { width: 100%; min-height: auto; }
             .chat-container { height: 400px; }
@@ -161,7 +152,6 @@
 
     <div class="logo-header">
         <img src="logo.png" alt="Zonda FM Logo">
-        <h1 class="main-title">Zonda FM</h1>
         <p class="slogan">Sentí el viento</p>
     </div>
 
@@ -178,12 +168,13 @@
     </div>
 
     <div class="social-bar">
-        <a href="https://wa.me/26" class="btn btn-wsap" target="_blank">WhatsApp Zonda</a>
+        <a href="https://wa.me/2616574" class="btn btn-wsap" target="_blank">WhatsApp Zonda</a>
         <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Ver en Kick</a>
     </div>
 
 </body>
 </html>
+
 
 
 
