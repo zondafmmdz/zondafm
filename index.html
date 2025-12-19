@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Zonda FM">
     <title>Zonda FM - Sentí el Viento</title>
-    
+
+    <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="./logo.png?v=1">
+    <link rel="apple-touch-icon" href="./logo.png?v=1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     
     <style>
-        * { box-sizing: border-box; } /* Evita que el padding rompa el ancho */
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -31,14 +36,14 @@
         }
 
         .logo-header img {
-            width: 140px;
+            width: 120px;
             height: auto;
             filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4));
         }
 
         .slogan {
             margin: 5px 0 0 0;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             text-transform: uppercase;
             color: #ff9d00;
@@ -46,16 +51,40 @@
             font-style: italic;
         }
 
+        /* BOTÓN DESCARGAR APK */
+        .apk-download-bar {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .btn-apk {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #ffffff;
+            color: #111;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            border: 2px solid #ff9d00;
+        }
+
+        .btn-apk img { width: 24px; }
+
         .main-content {
             display: flex;
-            flex-direction: column; /* Por defecto para móvil */
+            flex-direction: column;
             gap: 15px;
             width: 100%;
             max-width: 1200px;
             align-items: center;
         }
 
-        /* Contenedor Base */
         .glass-panel {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
@@ -64,14 +93,9 @@
             border-radius: 20px;
             width: 100%;
             overflow: hidden;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
         }
 
-        /* REPRODUCTOR */
-        .video-container { 
-            padding: 10px; 
-        }
-
+        .video-container { padding: 10px; }
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
@@ -79,34 +103,20 @@
             border-radius: 12px;
             overflow: hidden;
         }
-
         .video-wrapper iframe {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             border: none;
         }
 
-        /* CHAT: Aquí es donde forzamos el ajuste */
-        .chat-container { 
-            height: 550px; /* Altura generosa para ver mensajes y teclado */
-            display: flex;
-            flex-direction: column;
-        }
+        .chat-container { height: 450px; display: flex; }
+        .chat-container iframe { width: 100%; height: 100%; border: none; }
 
-        .chat-container iframe {
-            flex-grow: 1;
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block; /* Elimina barra inferior fantasma */
-        }
-
-        /* BOTONES */
         .social-bar {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin: 25px 0;
+            margin: 25px 0 40px 0;
             width: 100%;
             max-width: 400px;
         }
@@ -120,7 +130,6 @@
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            font-size: 1rem;
         }
 
         .btn-wsap { background: #25d366; animation: pulse-green 2s infinite; }
@@ -131,15 +140,12 @@
             100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* AJUSTES PARA COMPUTADORA */
         @media (min-width: 900px) {
-            .main-content {
-                flex-direction: row;
-                align-items: stretch;
-            }
+            .main-content { flex-direction: row; align-items: stretch; }
             .video-container { flex: 2; }
             .chat-container { flex: 1; height: auto; min-height: 500px; }
             .social-bar { flex-direction: row; max-width: 600px; }
+            .apk-download-bar { max-width: 600px; }
         }
     </style>
 </head>
@@ -150,6 +156,13 @@
         <p class="slogan">Sentí el viento</p>
     </div>
 
+    <div class="apk-download-bar">
+        <a href="TU_LINK_DE_GITHUB_AQUI/archivo.apk" class="btn-apk" download>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android">
+            DESCARGAR APP ANDROID (APK)
+        </a>
+    </div>
+
     <div class="main-content">
         <div class="glass-panel video-container">
             <div class="video-wrapper">
@@ -158,22 +171,23 @@
         </div>
 
         <div class="glass-panel chat-container">
-            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" 
-                    allowtransparency="true"></iframe>
+            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" allowtransparency="true"></iframe>
         </div>
     </div>
 
     <div class="social-bar">
         <a href="https://wa.me/2616574" class="btn btn-wsap" target="_blank">WhatsApp Zonda</a>
-        <a href="https://kick.com/zondafm" class="btn" style="background: #53fc18; color: black;" target="_blank">Ver en Kick App</a>
+        <a href="https://kick.com/zondafm" class="btn" style="background: #53fc18; color: black;" target="_blank">Ver en Kick</a>
     </div>
-
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+  }
+</script>
 </body>
 </html>
-
-
-
-
 
 
 
