@@ -20,26 +20,50 @@
             min-height: 100vh;
         }
 
+        /* CABECERA CON LOGO Y TEXTOS */
         .logo-header {
             width: 100%;
-            max-width: 350px;
+            max-width: 400px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            margin-top: 10px;
         }
 
         .logo-header img {
-            width: 80%;
+            width: 160px; /* Tamaño del logo ajustado */
             height: auto;
             display: block;
             margin: 0 auto;
-            filter: drop-shadow(0px 4px 20px rgba(255, 157, 0, 0.4));
+            filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4));
         }
 
+        .main-title {
+            margin: 15px 0 0 0;
+            font-size: 2.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to bottom, #ffffff, #ff9d00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slogan {
+            margin: 0;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #ff9d00;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
         .main-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            width: 100%;
+            gap: 20px;
+            width: 95%;
             max-width: 1200px;
             justify-content: center;
         }
@@ -58,18 +82,8 @@
             justify-content: center;
         }
 
-        .video-container { 
-            flex: 2; 
-            min-width: 300px; 
-            min-height: 250px; 
-        }
-
-        .chat-container { 
-            flex: 1; 
-            min-width: 300px; 
-            height: 450px; 
-            padding: 0; 
-        }
+        .video-container { flex: 2; min-width: 320px; min-height: 400px; }
+        .chat-container { flex: 1; min-width: 300px; height: 500px; padding: 0; }
 
         .video-wrapper {
             position: relative;
@@ -89,27 +103,27 @@
             border: none;
         }
 
+        /* BOTONES SOCIALES */
         .social-bar {
             display: flex;
             gap: 15px;
-            margin: 25px 0;
+            margin: 30px 0;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             justify-content: center;
         }
 
         .btn {
-            flex: 1;
             text-decoration: none;
             color: white;
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px 10px;
+            padding: 15px 30px;
             border-radius: 50px;
             transition: 0.3s;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            font-size: 14px;
+            flex: 1;
         }
 
         .btn-wsap {
@@ -118,22 +132,28 @@
             animation: pulse-green 2s infinite;
         }
 
-        @keyframes pulse-green {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        .btn-kick:hover {
+            background: #53fc18;
+            color: black;
+            box-shadow: 0 0 20px rgba(83, 252, 24, 0.4);
         }
 
-        .btn-kick:hover { background: #53fc18; color: black; }
+        @keyframes pulse-green {
+            0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
-        /* AJUSTES ESPECÍFICOS PARA MÓVIL */
+        /* RESPONSIVE MÓVIL */
         @media (max-width: 768px) {
-            body { padding: 5px; }
+            .main-title { font-size: 1.8rem; }
+            .slogan { font-size: 1rem; }
+            .logo-header img { width: 120px; }
             .main-content { flex-direction: column; align-items: center; }
-            .video-container, .chat-container { width: 92%; }
-            .social-bar { flex-direction: column; align-items: center; gap: 10px; }
-            .btn { width: 90%; padding: 18px; font-size: 16px; }
+            .video-container, .chat-container { width: 100%; min-height: auto; }
             .chat-container { height: 400px; }
+            .social-bar { flex-direction: column; width: 90%; }
+            .btn { width: 100%; padding: 18px; }
         }
     </style>
 </head>
@@ -141,6 +161,8 @@
 
     <div class="logo-header">
         <img src="logo.png" alt="Zonda FM Logo">
+        <h1 class="main-title">Zonda FM</h1>
+        <p class="slogan">Sentí el viento</p>
     </div>
 
     <div class="main-content">
@@ -156,13 +178,12 @@
     </div>
 
     <div class="social-bar">
-        <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">WhatsApp Zonda</a>
-        <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Escuchar en Kick</a>
+        <a href="https://wa.me/26" class="btn btn-wsap" target="_blank">WhatsApp Zonda</a>
+        <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Ver en Kick</a>
     </div>
 
 </body>
 </html>
-
 
 
 
