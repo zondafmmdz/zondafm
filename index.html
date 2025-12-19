@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zonda FM - Sentí el Viento</title>
     
     <link rel="icon" type="image/png" href="./logo.png?v=1">
@@ -22,33 +22,33 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .logo-header {
             width: 100%;
             max-width: 400px;
             text-align: center;
-            margin-bottom: 35px;
-            margin-top: 15px;
+            margin-bottom: 25px;
+            margin-top: 10px;
         }
 
         .logo-header img {
-            width: 180px;
+            width: 160px;
             height: auto;
             display: block;
             margin: 0 auto;
             filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4));
         }
 
-        /* ESLOGAN ESTILO ZONDA */
         .slogan {
             margin: 10px 0 0 0;
-            font-size: 1.6rem;
-            font-weight: 800; /* Más grueso para que combine con el logo */
-            text-transform: uppercase; /* En mayúsculas para mayor impacto */
-            color: #ff9d00; /* Naranja Zonda */
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 5px rgba(255, 157, 0, 0.2);
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #ff9d00;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
             font-style: italic;
         }
 
@@ -56,8 +56,8 @@
         .main-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            width: 95%;
+            gap: 15px;
+            width: 100%;
             max-width: 1200px;
             justify-content: center;
         }
@@ -68,24 +68,32 @@
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 15px;
+            padding: 10px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
 
-        .video-container { flex: 2; min-width: 320px; min-height: 400px; }
-        .chat-container { flex: 1; min-width: 300px; height: 500px; padding: 0; }
+        /* Ajustes específicos para que el video no se corte */
+        .video-container { 
+            flex: 2; 
+            min-width: 300px; 
+            width: 100%;
+        }
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* Relación 16:9 */
             height: 0;
             border-radius: 12px;
             overflow: hidden;
-            width: 100%;
+        }
+
+        /* Ajustes para el Chat */
+        .chat-container { 
+            flex: 1; 
+            min-width: 300px; 
+            height: 500px; /* Altura en PC */
         }
 
         iframe {
@@ -97,11 +105,16 @@
             border: none;
         }
 
+        .chat-container iframe {
+            position: relative; /* El chat no necesita el wrapper 16:9 */
+            border-radius: 12px;
+        }
+
         /* BOTONES */
         .social-bar {
             display: flex;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 12px;
+            margin: 25px 0;
             width: 100%;
             max-width: 600px;
             justify-content: center;
@@ -111,13 +124,14 @@
             text-decoration: none;
             color: white;
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px 30px;
+            padding: 12px 20px;
             border-radius: 50px;
             transition: 0.3s;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             flex: 1;
+            font-size: 0.9rem;
         }
 
         .btn-wsap {
@@ -133,18 +147,40 @@
 
         @keyframes pulse-green {
             0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
             100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* MÓVIL */
+        /* AJUSTES ESPECÍFICOS PARA MÓVIL */
         @media (max-width: 768px) {
-            .slogan { font-size: 1.2rem; letter-spacing: 2px; }
-            .logo-header img { width: 140px; }
-            .main-content { flex-direction: column; align-items: center; }
-            .video-container, .chat-container { width: 100%; }
-            .chat-container { height: 400px; }
-            .social-bar { flex-direction: column; width: 90%; }
+            body { padding: 5px; }
+            .logo-header { margin-bottom: 15px; }
+            .logo-header img { width: 120px; }
+            .slogan { font-size: 1.1rem; }
+            
+            .main-content { 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 10px;
+            }
+
+            .video-container { width: 95%; padding: 5px; }
+            
+            /* El chat en móvil necesita una altura definida para ser visible */
+            .chat-container { 
+                width: 95%; 
+                height: 450px; 
+                padding: 5px;
+                display: block !important; /* Asegura visibilidad */
+            }
+
+            .social-bar { 
+                flex-direction: column; 
+                width: 90%; 
+                gap: 10px;
+            }
+            
+            .btn { width: 100%; padding: 15px; }
         }
     </style>
 </head>
@@ -158,12 +194,21 @@
     <div class="main-content">
         <div class="glass-panel video-container">
             <div class="video-wrapper">
-                <iframe src="https://player.kick.com/zondafm" allowfullscreen="true"></iframe>
+                <iframe 
+                    src="https://player.kick.com/zondafm" 
+                    allowfullscreen="true" 
+                    scrolling="no">
+                </iframe>
             </div>
         </div>
 
         <div class="glass-panel chat-container">
-            <iframe src="https://kick.com/zondafm/chatroom" height="100%" width="100%"></iframe>
+            <iframe 
+                src="https://kick.com/zondafm/chatroom" 
+                height="100%" 
+                width="100%"
+                scrolling="yes">
+            </iframe>
         </div>
     </div>
 
@@ -174,6 +219,7 @@
 
 </body>
 </html>
+
 
 
 
