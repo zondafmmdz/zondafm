@@ -27,13 +27,11 @@
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         /* Estilo del Reproductor de Audio */
-        .audio-section { padding: 15px; border: 1px solid rgba(255, 157, 0, 0.3); margin-top: 10px; text-align: center; }
-        .audio-section p { margin: 0 0 10px 0; font-size: 0.8rem; color: #ff9d00; font-weight: 600; text-transform: uppercase; }
-        audio { 
-            width: 100%; 
-            height: 45px; 
-            filter: invert(100%) hue-rotate(180deg) brightness(1.5);
-        }
+        .audio-section { padding: 20px; border: 1px solid rgba(244, 93, 0, 0.4); margin-top: 10px; text-align: center; }
+        .audio-section p { margin: 0 0 15px 0; font-size: 0.85rem; color: #ff9d00; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Contenedor para el Widget de Caster */
+        .cstrEmbed { margin: 0 auto; border-radius: 10px; overflow: hidden; }
 
         .chat-section { width: 100%; height: 550px; }
         .chat-section iframe { width: 100%; height: 100%; border: none; }
@@ -67,11 +65,18 @@
             </section>
 
             <section class="glass-panel audio-section">
-                <p>📻 Señal de Audio (Segundo Plano)</p>
-                <audio controls>
-                    <source src="http://sapircast.caster.fm:18788/FE0pE;?type=http&nocache=1" type="audio/mpeg">
-                    Tu navegador no soporta el audio.
-                </audio>
+                <p>📻 ESCUCHÁ LA RADIO EN VIVO</p>
+                
+                <div data-type="newStreamPlayer" 
+                     data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" 
+                     data-theme="dark" 
+                     data-color="F45D00" 
+                     data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" 
+                     data-rendered="false" 
+                     class="cstrEmbed">
+                    <a href="https://www.caster.fm">Radio Hosting</a>
+                </div>
+                <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
             </section>
         </div>
 
@@ -87,7 +92,6 @@
 
 </body>
 </html>
-
 
 
 
