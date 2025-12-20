@@ -2,52 +2,92 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zonda FM - Sentí el Viento</title>
     
     <link rel="icon" type="image/png" href="./logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     
     <style>
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
             margin: 0; padding: 10px; font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e1e2f 0%, #111111 100%);
+            background: radial-gradient(circle at top, #252545 0%, #000000 100%);
             color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            overflow-x: hidden;
         }
-        .logo-header { text-align: center; margin-bottom: 20px; }
-        .logo-header img { width: 120px; height: auto; filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4)); }
-        .slogan { margin: 5px 0 0 0; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; color: #ff9d00; letter-spacing: 2px; font-style: italic; }
 
-        .main-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1300px; }
-        .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); }
+        /* Header más compacto para móvil */
+        .logo-header { text-align: center; margin: 10px 0 20px 0; }
+        .logo-header img { width: 100px; height: auto; filter: drop-shadow(0px 0px 15px rgba(255, 157, 0, 0.5)); }
+        .slogan { margin-top: 5px; font-size: 1rem; font-weight: 800; text-transform: uppercase; color: #ff9d00; letter-spacing: 2px; }
 
-        .video-section { width: 100%; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+        .main-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1200px; }
+
+        /* Paneles con efecto cristal mejorado */
+        .glass-panel { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 24px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+
+        /* Sección Video */
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* Estilo del Reproductor de Audio */
-        .audio-section { padding: 20px; border: 1px solid rgba(244, 93, 0, 0.4); margin-top: 10px; text-align: center; }
-        .audio-section p { margin: 0 0 15px 0; font-size: 0.85rem; color: #ff9d00; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        /* Sección Audio Optimizado */
+        .audio-section { padding: 20px; text-align: center; border-bottom: 2px solid #f45d00; }
+        .audio-section p { margin: 0 0 15px 0; font-size: 0.75rem; color: #ff9d00; font-weight: 600; letter-spacing: 1.5px; }
         
-        /* Contenedor para el Widget de Caster */
-        .cstrEmbed { margin: 0 auto; border-radius: 10px; overflow: hidden; }
+        /* Contenedor del Widget Caster */
+        .cstrEmbed { min-height: 100px; display: flex; justify-content: center; align-items: center; }
+        /* Ocultamos los links de Caster pero que sigan existiendo para evitar el error */
+        .cstrEmbed a { font-size: 1px; color: transparent; position: absolute; pointer-events: none; }
 
-        .chat-section { width: 100%; height: 550px; }
+        /* Chat ajustable */
+        .chat-section { width: 100%; height: 450px; }
         .chat-section iframe { width: 100%; height: 100%; border: none; }
 
-        .social-bar { display: flex; flex-direction: column; gap: 12px; margin: 25px 0; width: 100%; max-width: 500px; }
-        .btn { text-decoration: none; color: white; background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 50px; font-weight: 600; text-align: center; transition: 0.3s; }
-        .btn-wsap { background: #25d366; }
-        .btn-kick { background: #53fc18; color: black; }
+        /* Botonera inferior moderna */
+        .social-bar { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            margin: 20px 0; 
+            width: 100%; 
+            max-width: 500px; 
+        }
+        .btn { 
+            text-decoration: none; 
+            color: white; 
+            padding: 14px; 
+            border-radius: 18px; 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            text-align: center; 
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn:active { transform: scale(0.95); }
+        .btn-wsap { background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .btn-kick { background: #53fc18; color: black; box-shadow: 0 4px 15px rgba(83, 252, 24, 0.3); }
 
+        /* Diseño para PC / Tablet */
         @media (min-width: 900px) {
-            .main-container { flex-direction: row; height: 650px; align-items: stretch; }
+            body { padding: 20px; }
+            .main-container { flex-direction: row; height: 75vh; align-items: stretch; }
             .video-section { flex: 2; display: flex; flex-direction: column; }
             .video-wrapper { flex-grow: 1; padding-bottom: 0; }
-            .chat-section { flex: 1; height: auto; min-width: 350px; }
-            .social-bar { flex-direction: row; max-width: 600px; }
-            .btn { flex: 1; }
+            .chat-section { flex: 0.8; height: auto; }
+            .social-bar { max-width: 600px; }
         }
     </style>
 </head>
@@ -61,12 +101,11 @@
     <main class="main-container">
         <div class="video-section">
             <section class="glass-panel video-wrapper">
-                <iframe src="https://player.kick.com/zondafm?autoplay=true&parent=zondafmmdz.github.io" allowfullscreen="true" allow="autoplay; encrypted-media"></iframe>
+                <iframe src="https://player.kick.com/zondafm?autoplay=true&parent=zondafmmdz.github.io" allowfullscreen="true"></iframe>
             </section>
 
             <section class="glass-panel audio-section">
-                <p>📻 ESCUCHÁ LA RADIO EN VIVO</p>
-                
+                <p>📻 AUDIO EN VIVO</p>
                 <div data-type="newStreamPlayer" 
                      data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" 
                      data-theme="dark" 
@@ -74,12 +113,9 @@
                      data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" 
                      data-rendered="false" 
                      class="cstrEmbed">
-                    <a href="https://www.caster.fm">Shoutcast Hosting</a> 
-                    <a href="https://www.caster.fm">Stream Hosting</a> 
-                    <a href="https://www.caster.fm">Radio Server Hosting</a>
+                    <a href="https://www.caster.fm">Radio Hosting</a>
+                    <a href="https://www.caster.fm">Stream</a>
                 </div>
-            
-                <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
             </section>
         </div>
 
@@ -90,8 +126,10 @@
 
     <footer class="social-bar">
         <a href="https://wa.me/2616574" class="btn btn-wsap" target="_blank">WhatsApp</a>
-        <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Ver en Kick</a>
+        <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Kick.com</a>
     </footer>
+
+    <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
 
 </body>
 </html>
