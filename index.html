@@ -4,92 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zonda FM - Sentí el Viento</title>
-    
-    <link rel="icon" type="image/png" href="./logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-    
     <style>
-        * { box-sizing: border-box; }
+        :root {
+            --primary: #ff9d00;
+            --bg: #0f172a;
+        }
+
         body {
-            margin: 0; padding: 10px; font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e1e2f 0%, #111111 100%);
-            color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-        }
-        .logo-header { text-align: center; margin-bottom: 20px; }
-        .logo-header img { width: 120px; height: auto; filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4)); }
-        .slogan { margin: 5px 0 0 0; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; color: #ff9d00; letter-spacing: 2px; font-style: italic; }
-
-        .main-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1300px; }
-        .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); }
-
-        .video-section { width: 100%; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        /* Estilo del Reproductor de Audio */
-        .audio-section { padding: 15px; border: 1px solid rgba(255, 157, 0, 0.3); margin-top: 10px; text-align: center; }
-        .audio-section p { margin: 0 0 10px 0; font-size: 0.8rem; color: #ff9d00; font-weight: 600; text-transform: uppercase; }
-        audio { 
-            width: 100%; 
-            height: 45px; 
-            filter: invert(100%) hue-rotate(180deg) brightness(1.5); /* Hace que el reproductor sea oscuro/naranja */
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .chat-section { width: 100%; height: 550px; }
-        .chat-section iframe { width: 100%; height: 100%; border: none; }
+        .container {
+            width: 95%;
+            max-width: 800px;
+            padding: 20px 0;
+        }
 
-        .social-bar { display: flex; flex-direction: column; gap: 12px; margin: 25px 0; width: 100%; max-width: 500px; }
-        .btn { text-decoration: none; color: white; background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 50px; font-weight: 600; text-align: center; transition: 0.3s; }
-        .btn-wsap { background: #25d366; }
-        .btn-kick { background: #53fc18; color: black; }
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
 
-        @media (min-width: 900px) {
-            .main-container { flex-direction: row; height: 650px; align-items: stretch; }
-            .video-section { flex: 2; display: flex; flex-direction: column; }
-            .video-wrapper { flex-grow: 1; padding-bottom: 0; }
-            .chat-section { flex: 1; height: auto; min-width: 350px; }
-            .social-bar { flex-direction: row; max-width: 600px; }
-            .btn { flex: 1; }
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 4px 10px rgba(255, 157, 0, 0.3);
+            margin: 0;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contenedor de Video (YouTube/Kick) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Relación 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Reproductor de Audio */
+        .audio-player-wrapper {
+            text-align: center;
+        }
+
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        audio {
+            width: 100%;
+            height: 45px;
+            margin-top: 15px;
+            filter: invert(100%) hue-rotate(180deg) brightness(1.5);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: auto;
+            padding: 20px;
+        }
+
+        /* Ajustes para Móvil */
+        @media (max-width: 600px) {
+            .logo-text { font-size: 1.8rem; }
+            .glass-panel { padding: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="logo-header">
-        <img src="logo.png" alt="Zonda FM Logo">
-        <p class="slogan">Sentí el viento</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1 class="logo-text">ZONDA FM</h1>
+            <p style="color: #94a3b8;">Mendoza, Argentina</p>
+        </header>
 
-    <main class="main-container">
-        <div class="video-section">
-            <section class="glass-panel video-wrapper">
-                <iframe src="https://player.kick.com/zondafm?autoplay=true&parent=zondafmmdz.github.io" allowfullscreen="true" allow="autoplay; encrypted-media"></iframe>
-            </section>
+        <section class="glass-panel">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/LIVE_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 0.9rem; margin-top: 10px; color: #cbd5e1;">📺 Stream de Video</p>
+        </section>
 
-            <section class="glass-panel audio-section">
-                <p>📻 Señal de Audio (Segundo Plano)</p>
-                <audio controls>
-                    <source src="http://sapircast.caster.fm:18788/;FE0pE" type="audio/mpeg">
+        <section class="glass-panel">
+            <div class="audio-player-wrapper">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <span class="status-dot"></span>
+                    <span style="font-weight: bold; letter-spacing: 1px;">SEÑAL DE RADIO EN VIVO</span>
+                </div>
+                
+                <audio controls preload="none">
+                    <source src="http://sapircast.caster.fm:18788/FE0pE" type="audio/mpeg">
                     Tu navegador no soporta el audio.
                 </audio>
-            </section>
-        </div>
-
-        <section class="glass-panel chat-section">
-            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" allowtransparency="true"></iframe>
+                
+                <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 10px;">
+                    Optimizado para 96kbps. Si el audio se detiene, recarga la página.
+                </p>
+            </div>
         </section>
-    </main>
 
-    <footer class="social-bar">
-        <a href="https://wa.me/2616574" class="btn btn-wsap" target="_blank">WhatsApp</a>
-        <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Ver en Kick</a>
+        <section class="glass-panel" style="text-align: center;">
+            <p>¡Seguinos en nuestras redes!</p>
+            </section>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 Zonda FM - Mendoza <br>
+        Powered by Caster.fm Cloud
     </footer>
 
 </body>
 </html>
-
-
-
 
 
 
