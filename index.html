@@ -10,134 +10,45 @@
     
     <style>
         * { box-sizing: border-box; }
-
         body {
-            margin: 0;
-            padding: 10px;
-            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 10px; font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1e1e2f 0%, #111111 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        }
+        .logo-header { text-align: center; margin-bottom: 20px; }
+        .logo-header img { width: 120px; height: auto; filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4)); }
+        .slogan { margin: 5px 0 0 0; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; color: #ff9d00; letter-spacing: 2px; font-style: italic; }
+
+        .main-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1300px; }
+        .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); }
+
+        .video-section { width: 100%; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* Estilo del Reproductor de Audio */
+        .audio-section { padding: 15px; border: 1px solid rgba(255, 157, 0, 0.3); margin-top: 10px; text-align: center; }
+        .audio-section p { margin: 0 0 10px 0; font-size: 0.8rem; color: #ff9d00; font-weight: 600; text-transform: uppercase; }
+        audio { 
+            width: 100%; 
+            height: 45px; 
+            filter: invert(100%) hue-rotate(180deg) brightness(1.5); /* Hace que el reproductor sea oscuro/naranja */
         }
 
-        .logo-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        .chat-section { width: 100%; height: 550px; }
+        .chat-section iframe { width: 100%; height: 100%; border: none; }
 
-        .logo-header img {
-            width: 120px;
-            height: auto;
-            filter: drop-shadow(0px 4px 15px rgba(255, 157, 0, 0.4));
-        }
-
-        .slogan {
-            margin: 5px 0 0 0;
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #ff9d00;
-            letter-spacing: 2px;
-            font-style: italic;
-        }
-
-        .main-container {
-            display: flex;
-            flex-direction: column; /* Por defecto para móvil */
-            gap: 15px;
-            width: 100%;
-            max-width: 1300px;
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-        }
-
-        /* Reproductor Kick */
-        .video-section {
-            width: 100%;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: none;
-        }
-
-        /* Chatroom - Optimizado para no verse apretado */
-        .chat-section {
-            width: 100%;
-            height: 550px; /* Altura cómoda para leer en celu */
-        }
-
-        .chat-section iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .social-bar {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 25px 0;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .btn {
-            text-decoration: none;
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 16px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-align: center;
-            transition: 0.3s;
-        }
-
+        .social-bar { display: flex; flex-direction: column; gap: 12px; margin: 25px 0; width: 100%; max-width: 500px; }
+        .btn { text-decoration: none; color: white; background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 50px; font-weight: 600; text-align: center; transition: 0.3s; }
         .btn-wsap { background: #25d366; }
         .btn-kick { background: #53fc18; color: black; }
 
-        /* AJUSTES PARA PC */
         @media (min-width: 900px) {
-            body { padding: 30px; }
-            .logo-header img { width: 150px; }
-            
-            .main-container {
-                flex-direction: row;
-                height: 600px;
-                align-items: stretch;
-            }
-
-            .video-section { flex: 2; }
-            .video-wrapper { height: 100%; padding-bottom: 0; }
-            
-            .chat-section { 
-                flex: 1; 
-                height: auto; /* Se estira al alto del contenedor */
-                min-width: 350px;
-            }
-
-            .social-bar {
-                flex-direction: row;
-                max-width: 600px;
-            }
+            .main-container { flex-direction: row; height: 650px; align-items: stretch; }
+            .video-section { flex: 2; display: flex; flex-direction: column; }
+            .video-wrapper { flex-grow: 1; padding-bottom: 0; }
+            .chat-section { flex: 1; height: auto; min-width: 350px; }
+            .social-bar { flex-direction: row; max-width: 600px; }
             .btn { flex: 1; }
         }
     </style>
@@ -150,25 +61,24 @@
     </header>
 
     <main class="main-container">
-    <section class="glass-panel video-section">
-        <div class="video-wrapper">
-            <iframe 
-                src="https://player.kick.com/zondafm?autoplay=true&muted=false&parent=zondafmmdz.github.io" 
-                allowfullscreen="true"
-                allow="autoplay; encrypted-media"
-                frameborder="0">
-            </iframe>
-        </div>
-    </section>
+        <div class="video-section">
+            <section class="glass-panel video-wrapper">
+                <iframe src="https://player.kick.com/zondafm?autoplay=true&parent=zondafmmdz.github.io" allowfullscreen="true" allow="autoplay; encrypted-media"></iframe>
+            </section>
 
-    <section class="glass-panel chat-section">
-        <iframe 
-            src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" 
-            allowtransparency="true"
-            allow="autoplay">
-        </iframe>
-    </section>
-</main>
+            <section class="glass-panel audio-section">
+                <p>📻 Señal de Audio (Segundo Plano)</p>
+                <audio controls>
+                    <source src="http://sapircast.caster.fm:18788/FE0pE" type="audio/mpeg">
+                    Tu navegador no soporta el audio.
+                </audio>
+            </section>
+        </div>
+
+        <section class="glass-panel chat-section">
+            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" allowtransparency="true"></iframe>
+        </section>
+    </main>
 
     <footer class="social-bar">
         <a href="https://wa.me/2616574" class="btn btn-wsap" target="_blank">WhatsApp</a>
@@ -177,6 +87,7 @@
 
 </body>
 </html>
+
 
 
 
