@@ -15,17 +15,14 @@
             margin: 0; padding: 10px; font-family: 'Poppins', sans-serif;
             background: radial-gradient(circle at top, #252545 0%, #000000 100%);
             color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Header más compacto para móvil */
         .logo-header { text-align: center; margin: 10px 0 20px 0; }
         .logo-header img { width: 100px; height: auto; filter: drop-shadow(0px 0px 15px rgba(255, 157, 0, 0.5)); }
         .slogan { margin-top: 5px; font-size: 1rem; font-weight: 800; text-transform: uppercase; color: #ff9d00; letter-spacing: 2px; }
 
         .main-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1200px; }
 
-        /* Paneles con efecto cristal mejorado */
         .glass-panel { 
             background: rgba(255, 255, 255, 0.03); 
             backdrop-filter: blur(20px); 
@@ -36,24 +33,27 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
 
-        /* Sección Video */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* Sección Audio Optimizado */
+        /* SECCIÓN AUDIO ARREGLADA */
         .audio-section { padding: 20px; text-align: center; border-bottom: 2px solid #f45d00; }
         .audio-section p { margin: 0 0 15px 0; font-size: 0.75rem; color: #ff9d00; font-weight: 600; letter-spacing: 1.5px; }
         
-        /* Contenedor del Widget Caster */
-        .cstrEmbed { min-height: 100px; display: flex; justify-content: center; align-items: center; }
-        /* Ocultamos los links de Caster pero que sigan existiendo para evitar el error */
-        .cstrEmbed a { font-size: 1px; color: transparent; position: absolute; pointer-events: none; }
+        /* Estilo para los links obligatorios de Caster */
+        .cstrEmbed a { 
+            display: inline-block; 
+            font-size: 10px; 
+            color: #444; 
+            text-decoration: none; 
+            margin: 5px;
+            transition: 0.3s;
+        }
+        .cstrEmbed a:hover { color: #ff9d00; }
 
-        /* Chat ajustable */
         .chat-section { width: 100%; height: 450px; }
         .chat-section iframe { width: 100%; height: 100%; border: none; }
 
-        /* Botonera inferior moderna */
         .social-bar { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -68,26 +68,17 @@
             padding: 14px; 
             border-radius: 18px; 
             font-weight: 600; 
-            font-size: 0.9rem;
             text-align: center; 
-            transition: transform 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            font-size: 0.9rem;
         }
-        .btn:active { transform: scale(0.95); }
-        .btn-wsap { background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-        .btn-kick { background: #53fc18; color: black; box-shadow: 0 4px 15px rgba(83, 252, 24, 0.3); }
+        .btn-wsap { background: #25d366; }
+        .btn-kick { background: #53fc18; color: black; }
 
-        /* Diseño para PC / Tablet */
         @media (min-width: 900px) {
-            body { padding: 20px; }
-            .main-container { flex-direction: row; height: 75vh; align-items: stretch; }
+            .main-container { flex-direction: row; height: 75vh; }
             .video-section { flex: 2; display: flex; flex-direction: column; }
             .video-wrapper { flex-grow: 1; padding-bottom: 0; }
             .chat-section { flex: 0.8; height: auto; }
-            .social-bar { max-width: 600px; }
         }
     </style>
 </head>
@@ -113,8 +104,9 @@
                      data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" 
                      data-rendered="false" 
                      class="cstrEmbed">
-                    <a href="https://www.caster.fm">Radio Hosting</a>
-                    <a href="https://www.caster.fm">Stream</a>
+                    <a href="https://www.caster.fm">Shoutcast Hosting</a> 
+                    <a href="https://www.caster.fm">Stream Hosting</a> 
+                    <a href="https://www.caster.fm">Radio Server Hosting</a>
                 </div>
             </section>
         </div>
@@ -133,7 +125,6 @@
 
 </body>
 </html>
-
 
 
 
