@@ -17,10 +17,10 @@
             color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* LOGO AGRANDADO */
+        /* LOGO GRANDE */
         .logo-header { text-align: center; margin: 20px 0 25px 0; }
         .logo-header img { 
-            width: 180px; /* Aumentado de 100px a 180px */
+            width: 180px; 
             height: auto; 
             filter: drop-shadow(0px 0px 20px rgba(255, 157, 0, 0.6)); 
         }
@@ -28,7 +28,6 @@
 
         .main-container { display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 1200px; }
 
-        /* Contenedor de la columna izquierda con separación clara */
         .left-column { display: flex; flex-direction: column; gap: 25px; width: 100%; }
 
         .glass-panel { 
@@ -41,27 +40,26 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
         }
 
-        /* Sección Video Kick */
+        /* SECCIÓN VIDEO KICK OPTIMIZADA */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* SECCIÓN AUDIO REFORZADA */
+        /* SECCIÓN AUDIO */
         .audio-section { 
             padding: 30px 20px; 
             text-align: center; 
-            background: rgba(10, 10, 20, 0.8); /* Fondo más sólido para que el widget cargue bien */
+            background: rgba(10, 10, 20, 0.8);
             border-top: 2px solid #f45d00;
         }
         .audio-section p { margin: 0 0 20px 0; font-size: 0.8rem; color: #ff9d00; font-weight: 600; letter-spacing: 2px; }
         
-        /* Links de Caster - NO TOCAR para evitar error */
         .cstrEmbed a { display: inline-block; font-size: 10px; color: #555; text-decoration: none; margin: 5px 10px; }
 
-        /* Chat Minnit */
+        /* CHAT */
         .chat-section { width: 100%; height: 500px; }
         .chat-section iframe { width: 100%; height: 100%; border: none; }
 
-        /* Botonera */
+        /* BOTONERA */
         .social-bar { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -95,12 +93,11 @@
     <main class="main-container">
         <div class="left-column">
             <section class="glass-panel video-wrapper">
-                <iframe src="https://player.kick.com/zondafm?autoplay=true&parent=zondafmmdz.github.io" allowfullscreen="true"></iframe>
+                <iframe src="https://player.kick.com/zondafm?autoplay=true&muted=false&parent=zondafmmdz.github.io" allowfullscreen="true"></iframe>
             </section>
 
             <section class="glass-panel audio-section">
                 <p>📻 SEÑAL DE AUDIO EN VIVO</p>
-                
                 <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="F45D00" data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" data-rendered="false" class="cstrEmbed">
                     <a href="https://www.caster.fm">Shoutcast Hosting</a> 
                     <a href="https://www.caster.fm">Stream Hosting</a> 
@@ -115,7 +112,7 @@
     </main>
 
     <footer class="social-bar">
-        <a href="https://wa.me/2610000000" class="btn btn-wsap" target="_blank">WhatsApp</a>
+        <a href="https://wa.me/2616574488" class="btn btn-wsap" target="_blank">WhatsApp</a>
         <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Kick.com</a>
     </footer>
 
@@ -123,4 +120,3 @@
 
 </body>
 </html>
-
