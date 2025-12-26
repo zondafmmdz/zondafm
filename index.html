@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     
     <style>
+        /* Estilos Base */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body {
@@ -17,7 +18,7 @@
             color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* LOGO GRANDE */
+        /* Logo Zonda FM */
         .logo-header { text-align: center; margin: 20px 0 25px 0; }
         .logo-header img { 
             width: 200px; 
@@ -26,51 +27,53 @@
         }
         .slogan { margin-top: 10px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; color: #ff9d00; letter-spacing: 3px; }
 
+        /* Contenedores Principales */
         .main-container { display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 1200px; }
-
         .left-column { display: flex; flex-direction: column; gap: 25px; width: 100%; }
 
+        /* Efecto Cristal (Glassmorphism) */
         .glass-panel { 
             background: rgba(255, 255, 255, 0.04); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 24px; 
-            overflow: hidden; 
+            border-radius: 24px; overflow: hidden; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
         }
 
+        /* Video de YouTube */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
+        /* Sección de Audio */
         .audio-section { 
-            padding: 30px 20px; 
-            text-align: center; 
-            background: rgba(10, 10, 20, 0.8);
-            border-top: 2px solid #f45d00;
+            padding: 30px 20px; text-align: center; 
+            background: rgba(10, 10, 20, 0.8); border-top: 2px solid #f45d00; 
         }
-        .audio-section p { margin: 0 0 20px 0; font-size: 0.8rem; color: #ff9d00; font-weight: 600; letter-spacing: 2px; }
-        
-        .cstrEmbed a { display: inline-block; font-size: 10px; color: #555; text-decoration: none; margin: 5px 10px; }
+        .audio-section p { margin: 0 0 15px 0; font-size: 0.8rem; color: #ff9d00; font-weight: 600; letter-spacing: 2px; }
 
+        /* Chat de Minnit */
         .chat-section { width: 100%; height: 500px; }
         .chat-section iframe { width: 100%; height: 100%; border: none; }
 
-        .social-bar { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            margin: 30px 0; 
-            width: 100%; 
-            max-width: 500px; 
+        /* Footer Informativo y Botones */
+        .info-footer { width: 100%; max-width: 600px; margin: 30px 0; display: flex; flex-direction: column; gap: 20px; }
+        
+        .glass-text { 
+            background: rgba(255, 255, 255, 0.05); padding: 20px; 
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; 
         }
-        .btn { 
-            text-decoration: none; color: white; padding: 18px; border-radius: 20px; 
-            font-weight: 600; text-align: center; font-size: 1rem; transition: 0.3s;
-        }
-        .btn-wsap { background: #1ebea5; }
-        .btn-kick { background: #53fc18; color: black; }
+        .glass-text p { margin: 0 0 15px 0; font-size: 0.95rem; line-height: 1.5; color: rgba(255, 255, 255, 0.9); }
+        .glass-text strong { color: #ff9d00; }
 
+        .btn { 
+            display: block; text-decoration: none; color: white; padding: 15px; 
+            border-radius: 15px; font-weight: 600; transition: 0.3s; text-align: center;
+        }
+        .btn-wsap { background: #1ebea5; box-shadow: 0 4px 15px rgba(30, 190, 165, 0.3); }
+        .btn-youtube { background: #FF0000; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        /* Adaptación para PC (Pantallas grandes) */
         @media (min-width: 900px) {
             .main-container { flex-direction: row; height: 85vh; align-items: stretch; }
             .left-column { flex: 2; }
@@ -90,22 +93,15 @@
         <div class="left-column">
             <section class="glass-panel video-wrapper">
                 <iframe 
-                    width="100%" 
-                    height="100%" 
                     src="https://www.youtube.com/embed/live_stream?channel=UCf_zB_2lF6A6qvio8rW635w&autoplay=1&mute=0" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
                 </iframe>
             </section>
 
             <section class="glass-panel audio-section">
-                <p>📻 AUDIO EN VIVO</p>
-                <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="F45D00" data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" data-rendered="false" class="cstrEmbed">
-                    <a href="https://www.caster.fm">Shoutcast Hosting</a> 
-                    <a href="https://www.caster.fm">Stream Hosting</a> 
-                    <a href="https://www.caster.fm">Radio Server Hosting</a>
-                </div>
+                <p>📻 SEÑAL DE AUDIO EN VIVO</p>
+                <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="F45D00" data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" data-rendered="false" class="cstrEmbed"></div>
             </section>
         </div>
 
@@ -114,9 +110,16 @@
         </section>
     </main>
 
-    <footer class="social-bar">
-        <a href="https://wa.me/2616574488" class="btn btn-wsap" target="_blank">WhatsApp</a>
-        <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Kick.com</a>
+    <footer class="info-footer">
+        <div class="glass-text">
+            <p>Pedinos tu canción por el chat de <strong>YouTube</strong>, desde esta página o por <strong>WhatsApp</strong> apretando este botón:</p>
+            <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">Escribinos por WhatsApp</a>
+        </div>
+
+        <div class="glass-text">
+            <p>¿Preferís vernos directamente en la aplicación? También podés seguir el directo desde nuestro canal:</p>
+            <a href="https://www.youtube.com/@ZondaFM" class="btn btn-youtube" target="_blank">Ir a YouTube Live</a>
+        </div>
     </footer>
 
     <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
