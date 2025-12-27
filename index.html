@@ -24,6 +24,34 @@
             filter: drop-shadow(0px 0px 20px rgba(255, 157, 0, 0.6)); 
         }
 
+        /* CONTENEDOR DE ALERTAS */
+        .alerts-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+
+        .alert-box {
+            padding: 12px 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            border: 1px solid;
+        }
+
+        /* Alerta Kick */
+        .alert-kick {
+            background: rgba(83, 252, 24, 0.1);
+            border-color: #53fc18;
+            color: #53fc18;
+        }
+
+        /* Alerta Caster */
+        .alert-caster {
+            background: rgba(255, 123, 0, 0.1);
+            border-color: #ff7b00;
+            color: #ff7b00;
+        }
+
+        .alert-box strong { display: block; text-transform: uppercase; margin-bottom: 2px; font-weight: 800; }
+        .alert-box p { margin: 0; color: #fff; opacity: 0.9; }
+
         .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1200px; }
         .left-column { display: flex; flex-direction: column; gap: 20px; width: 100%; }
 
@@ -35,11 +63,9 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
         }
 
-        /* VIDEO DE KICK (Principal) */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* AUDIO DE CASTER (Respaldo) */
         .audio-section { 
             padding: 20px 15px; text-align: center; 
             background: rgba(20, 20, 35, 0.9); border-top: 3px solid #FF7B00; 
@@ -50,11 +76,9 @@
         }
         .cstrEmbed a { font-size: 10px; color: rgba(255,255,255,0.2); text-decoration: none; margin: 0 5px; }
 
-        /* CHAT */
         .chat-section { width: 100%; height: 450px; }
         .chat-section iframe { width: 100%; height: 100%; border: none; }
 
-        /* Footer */
         .info-footer { width: 100%; max-width: 1200px; margin: 30px 0; display: grid; grid-template-columns: 1fr; gap: 15px; }
         @media (min-width: 768px) { .info-footer { grid-template-columns: 1fr 1fr; } }
         
@@ -80,6 +104,17 @@
         <img src="./logo.png" alt="Zonda FM Logo">
     </header>
 
+    <div class="alerts-container">
+        <div class="alert-box alert-kick">
+            <strong>📺 MODO VIDEO (KICK)</strong>
+            <p>Ideal para PC. En celulares, mantené la pantalla encendida para no perder la conexión.</p>
+        </div>
+        <div class="alert-box alert-caster">
+            <strong>🎧 MODO RADIO (CASTER)</strong>
+            <p>Usá este reproductor si vas a bloquear el celular o usar auriculares en segundo plano.</p>
+        </div>
+    </div>
+
     <main class="main-container">
         <div class="left-column">
             
@@ -91,7 +126,7 @@
             </section>
 
             <section class="glass-panel audio-section">
-                <span class="live-badge">AUDICIÓN SIN CORTES (CASTER)</span>
+                <span class="live-badge">REPRODUCTOR 24/7 (AHORRO DE DATOS)</span>
                 <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="FF7B00" data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" data-rendered="false" class="cstrEmbed">
                     <a href="https://www.caster.fm">Shoutcast Hosting</a> 
                     <a href="https://www.caster.fm">Stream Hosting</a> 
@@ -112,8 +147,8 @@
             <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">Escribinos ahora</a>
         </div>
         <div class="glass-text">
-            <p>Seguí el directo desde nuestra sala oficial en Kick:</p>
-            <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Ir a Kick.com</a>
+            <p>Seguí el directo desde Kick:</p>
+            <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Canal de Kick</a>
         </div>
     </footer>
 
