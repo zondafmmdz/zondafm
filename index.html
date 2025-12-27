@@ -24,20 +24,6 @@
             filter: drop-shadow(0px 0px 20px rgba(255, 157, 0, 0.6)); 
         }
 
-        /* Cartel de Advertencia Copyright */
-        .copyright-alert {
-            background: rgba(255, 157, 0, 0.1);
-            border: 1px dashed #ff9d00;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .copyright-alert strong { color: #ff9d00; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .copyright-alert p { margin: 0; font-size: 0.85rem; color: #fff; opacity: 0.9; }
-
         .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1200px; }
         .left-column { display: flex; flex-direction: column; gap: 20px; width: 100%; }
 
@@ -49,23 +35,22 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
         }
 
-        /* SECCIÓN AUDIO ARRIBA */
-        .audio-section { 
-            padding: 25px 15px; text-align: center; 
-            background: rgba(20, 20, 35, 0.9); border-bottom: 3px solid #FF7B00; 
-        }
-        .audio-section .live-badge { 
-            background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; 
-            padding: 4px 10px; border-radius: 5px; margin-bottom: 15px; display: inline-block;
-        }
-        
-        /* Estilo para los links obligatorios para que no molesten visualmente */
-        .cstrEmbed a { font-size: 10px; color: rgba(255,255,255,0.2); text-decoration: none; margin: 0 5px; }
-
-        /* YOUTUBE ABAJO */
+        /* VIDEO DE KICK (Principal) */
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
+        /* AUDIO DE CASTER (Respaldo) */
+        .audio-section { 
+            padding: 20px 15px; text-align: center; 
+            background: rgba(20, 20, 35, 0.9); border-top: 3px solid #FF7B00; 
+        }
+        .audio-section .live-badge { 
+            background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; 
+            padding: 4px 10px; border-radius: 5px; margin-bottom: 10px; display: inline-block;
+        }
+        .cstrEmbed a { font-size: 10px; color: rgba(255,255,255,0.2); text-decoration: none; margin: 0 5px; }
+
+        /* CHAT */
         .chat-section { width: 100%; height: 450px; }
         .chat-section iframe { width: 100%; height: 100%; border: none; }
 
@@ -79,7 +64,7 @@
         }
         .btn { display: block; text-decoration: none; color: white; padding: 12px; border-radius: 12px; font-weight: 600; margin-top: 10px; }
         .btn-wsap { background: #1ebea5; }
-        .btn-youtube { background: #FF0000; }
+        .btn-kick { background: #53fc18; color: #000; }
 
         @media (min-width: 900px) {
             .main-container { flex-direction: row; height: 85vh; }
@@ -95,29 +80,23 @@
         <img src="./logo.png" alt="Zonda FM Logo">
     </header>
 
-    <div class="copyright-alert">
-        <strong>⚠️ ATENCIÓN OYENTES</strong>
-        <p>Escuchá la música <u>SIN CORTES</u> por el reproductor de audio de Caster.fm. YouTube solo transmite voz y video.</p>
-    </div>
-
     <main class="main-container">
         <div class="left-column">
             
+            <section class="glass-panel video-wrapper">
+                <iframe 
+                    src="https://player.kick.com/zondafmmdz?autoplay=true&muted=false&parent=zondafmmdz.netlify.app" 
+                    allowfullscreen="true">
+                </iframe>
+            </section>
+
             <section class="glass-panel audio-section">
-                <span class="live-badge">RADIO EN VIVO</span>
+                <span class="live-badge">AUDICIÓN SIN CORTES (CASTER)</span>
                 <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="FF7B00" data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" data-rendered="false" class="cstrEmbed">
                     <a href="https://www.caster.fm">Shoutcast Hosting</a> 
                     <a href="https://www.caster.fm">Stream Hosting</a> 
                     <a href="https://www.caster.fm">Radio Server Hosting</a>
                 </div>
-            </section>
-
-            <section class="glass-panel video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/live_stream?channel=UCf_zB_2lF6A6qvio8rW635w&autoplay=1&mute=1" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
             </section>
 
         </div>
@@ -133,8 +112,8 @@
             <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">Escribinos ahora</a>
         </div>
         <div class="glass-text">
-            <p>¿Querés vernos en la app de YouTube?</p>
-            <a href="https://www.youtube.com/channel/UCf_zB_2lF6A6qvio8rW635w" class="btn btn-youtube" target="_blank">Ir al Canal</a>
+            <p>Seguí el directo desde nuestra sala oficial en Kick:</p>
+            <a href="https://kick.com/zondafmmdz" class="btn btn-kick" target="_blank">Ir a Kick.com</a>
         </div>
     </footer>
 
@@ -142,6 +121,7 @@
 
 </body>
 </html>
+
 
 
 
