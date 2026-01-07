@@ -24,7 +24,6 @@
             filter: drop-shadow(0px 0px 20px rgba(255, 157, 0, 0.6)); 
         }
 
-        /* ALERTAS */
         .alerts-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
         .alert-box { padding: 12px 15px; border-radius: 15px; text-align: center; font-size: 0.85rem; border: 1px solid; }
         .alert-kick { background: rgba(83, 252, 24, 0.1); border-color: #53fc18; color: #53fc18; }
@@ -32,7 +31,14 @@
         .alert-box strong { display: block; text-transform: uppercase; margin-bottom: 2px; font-weight: 800; }
         .alert-box p { margin: 0; color: #fff; opacity: 0.9; }
 
-        .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1200px; }
+        .main-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+            width: 100%; 
+            max-width: 1200px; 
+        }
+
         .left-column { display: flex; flex-direction: column; gap: 20px; width: 100%; }
 
         .glass-panel { 
@@ -56,19 +62,14 @@
         }
         .cstrEmbed a { font-size: 10px; color: rgba(255,255,255,0.2); text-decoration: none; margin: 0 5px; }
 
-        /* --- NUEVO CHAT DE KICK --- */
+        /* --- AJUSTE DE ALTURA PARA EL CHAT EN MÓVIL --- */
         .chat-section { 
             width: 100%; 
-            height: 500px; /* Altura ideal para móviles */
-            background: #000; /* Fondo negro para que el chat de Kick no resalte bordes blancos */
+            height: 650px; /* Aumentado de 500px a 650px para mejor registro */
+            background: #000;
         }
-        .chat-section iframe { 
-            width: 100%; 
-            height: 100%; 
-            border: none;
-        }
+        .chat-section iframe { width: 100%; height: 100%; border: none; }
 
-        /* FOOTER */
         .info-footer { width: 100%; max-width: 1200px; margin: 30px 0; display: grid; grid-template-columns: 1fr; gap: 15px; }
         @media (min-width: 768px) { .info-footer { grid-template-columns: 1fr 1fr; } }
         
@@ -77,29 +78,20 @@
         .btn-wsap { background: #1ebea5; }
         .btn-kick { background: #53fc18; color: #000; }
 
-        /* BOTÓN FLOTANTE COMPARTIR */
         .share-fab {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            z-index: 9999;
-            text-decoration: none;
-            transition: transform 0.3s;
+            position: fixed; bottom: 20px; right: 20px;
+            background-color: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 9999;
+            text-decoration: none; transition: transform 0.3s;
         }
-        .share-fab:active { transform: scale(0.9); }
-        .share-fab svg { width: 30px; height: 30px; fill: white; }
 
         @media (min-width: 900px) {
-            .main-container { flex-direction: row; height: 85vh; }
+            .main-container { 
+                flex-direction: row; 
+                height: 85vh; 
+            }
             .left-column { flex: 2; overflow-y: auto; }
             .chat-section { flex: 0.8; height: auto; }
             .video-wrapper { padding-bottom: 56.25%; flex-grow: 0; }
@@ -115,11 +107,11 @@
     <div class="alerts-container">
         <div class="alert-box alert-kick">
             <strong>📺 MODO VIDEO (KICK)</strong>
-            <p>Ideal para PC. En celulares, mantené la pantalla encendida para no perder la conexión.</p>
+            <p>Bajá para chatear o registrarte. Chat ampliado para mayor comodidad.</p>
         </div>
         <div class="alert-box alert-caster">
             <strong>🎧 MODO RADIO (CASTER)</strong>
-            <p>Usá este reproductor si vas a bloquear el celular o usar auriculares en segundo plano.</p>
+            <p>Usá este para escuchar mientras usás otras aplicaciones.</p>
         </div>
     </div>
 
@@ -133,11 +125,9 @@
             </section>
 
             <section class="glass-panel audio-section">
-                <span class="live-badge">REPRODUCTOR 24/7 (AHORRO DE DATOS)</span>
+                <span class="live-badge">REPRODUCTOR 24/7 (AUDIO SOLO)</span>
                 <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="FF7B00" data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" data-rendered="false" class="cstrEmbed">
-                    <a href="https://www.caster.fm">Shoutcast Hosting</a> 
-                    <a href="https://www.caster.fm">Stream Hosting</a> 
-                    <a href="https://www.caster.fm">Radio Server Hosting</a>
+                    <a href="https://www.caster.fm">Radio Hosting</a>
                 </div>
             </section>
         </div>
@@ -152,16 +142,16 @@
 
     <footer class="info-footer">
         <div class="glass-text">
-            <p>Pedinos tu canción por <strong>WhatsApp</strong>:</p>
-            <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">Escribinos ahora</a>
+            <p>¿Querés un tema? <strong>WhatsApp</strong>:</p>
+            <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">Enviar Mensaje</a>
         </div>
         <div class="glass-text">
-            <p>Seguí el directo desde Kick:</p>
-            <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Canal de Kick</a>
+            <p>Comunidad Kick:</p>
+            <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">Ver perfil de Kick</a>
         </div>
     </footer>
 
-    <a href="whatsapp://send?text=¡Che! Ya escuchaste Zonda FM 📻. Escuchala por aca: https://zondafmmdz.netlify.app" class="share-fab" title="Compartir en WhatsApp">
+    <a href="whatsapp://send?text=¡Che! Escuchá Zonda FM 📻: https://zondafmmdz.netlify.app" class="share-fab">
         <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.6-2.8-23.6-8.7-45-27.7-16.6-14.8-27.8-33.1-31.1-38.6-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
     </a>
 
@@ -169,6 +159,7 @@
 
 </body>
 </html>
+
 
 
 
