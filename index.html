@@ -56,8 +56,17 @@
         }
         .cstrEmbed a { font-size: 10px; color: rgba(255,255,255,0.2); text-decoration: none; margin: 0 5px; }
 
-        .chat-section { width: 100%; height: 450px; }
-        .chat-section iframe { width: 100%; height: 100%; border: none; }
+        /* --- NUEVO CHAT DE KICK --- */
+        .chat-section { 
+            width: 100%; 
+            height: 500px; /* Altura ideal para móviles */
+            background: #000; /* Fondo negro para que el chat de Kick no resalte bordes blancos */
+        }
+        .chat-section iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none;
+        }
 
         /* FOOTER */
         .info-footer { width: 100%; max-width: 1200px; margin: 30px 0; display: grid; grid-template-columns: 1fr; gap: 15px; }
@@ -134,7 +143,10 @@
         </div>
 
         <section class="glass-panel chat-section">
-            <iframe src="https://organizations.minnit.chat/815617819785178/c/ZondaFM?embed" allowtransparency="true"></iframe>
+            <iframe 
+                src="https://kick.com/zondafm/chatroom" 
+                scrolling="no">
+            </iframe>
         </section>
     </main>
 
@@ -157,6 +169,7 @@
 
 </body>
 </html>
+
 
 
 
