@@ -6,11 +6,11 @@
     <title>Zonda FM - Sentí el Viento</title>
     
     <meta property="og:title" content="Zonda FM - Sentí el Viento">
-    <meta property="og:description" content="Escuchanos en vivo desde Mendoza. La radio que te acompaña con la mejor música las 24hs.">
+    <meta property="og:description" content="Escuchanos en vivo desde Mendoza. La mejor música las 24hs.">
     <meta property="og:image" content="https://zondafmmdz.netlify.app/logo.png">
     <meta property="og:url" content="https://zondafmmdz.netlify.app">
     <meta property="og:type" content="website">
-    
+
     <link rel="icon" type="image/png" href="./logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     
@@ -24,11 +24,7 @@
         }
 
         .logo-header { text-align: center; margin: 15px 0; }
-        .logo-header img { 
-            width: 180px; 
-            height: auto; 
-            filter: drop-shadow(0px 0px 20px rgba(255, 157, 0, 0.6)); 
-        }
+        .logo-header img { width: 180px; height: auto; filter: drop-shadow(0px 0px 20px rgba(255, 157, 0, 0.6)); }
 
         .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1200px; }
         .left-column { display: flex; flex-direction: column; gap: 20px; width: 100%; }
@@ -44,55 +40,29 @@
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* SECCIÓN AUDIO: Sin estilos que afecten al widget interno */
-        .audio-section { 
-            padding: 20px 15px; text-align: center; 
-            background: rgba(20, 20, 35, 0.9); border-top: 3px solid #FF7B00; 
-        }
-        .audio-section .live-badge { 
-            background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; 
-            padding: 4px 10px; border-radius: 5px; margin-bottom: 10px; display: inline-block;
-        }
+        /* Contenedor de Audio */
+        .audio-section { padding: 20px; text-align: center; background: #141423; border-top: 3px solid #FF7B00; }
+        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 10px; border-radius: 5px; margin-bottom: 15px; display: inline-block; }
 
-        /* SECCIÓN DEL CHAT */
-        .chat-section { 
-            width: 100%; 
-            display: flex;
-            flex-direction: column;
-            background: #fff;
-            min-height: 500px;
-        }
-        .chat-header {
-            background: #FF7B00;
-            color: #000;
-            padding: 10px;
-            font-weight: 800;
-            font-size: 0.8rem;
-            text-align: center;
-            text-transform: uppercase;
-        }
-        .chat-container { flex-grow: 1; width: 100%; height: 100%; }
+        /* Sección de Chat Cbox */
+        .chat-section { width: 100%; height: 500px; background: #fff; display: flex; flex-direction: column; }
+        .chat-header { background: #FF7B00; color: #000; padding: 10px; font-weight: 800; font-size: 0.8rem; text-align: center; }
+        .chat-container { flex-grow: 1; width: 100%; }
         .chat-container iframe { width: 100%; height: 100%; border: none; display: block; }
 
         .info-footer { width: 100%; max-width: 1200px; margin: 30px 0; display: grid; grid-template-columns: 1fr; gap: 15px; }
         @media (min-width: 768px) { .info-footer { grid-template-columns: 1fr 1fr; } }
-        
         .glass-text { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 157, 0, 0.2); text-align: center; }
         
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; padding: 14px; border-radius: 12px; font-weight: 700; margin-top: 10px; transition: 0.3s; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; padding: 14px; border-radius: 12px; font-weight: 700; margin-top: 10px; }
         .btn-wsap { background: #1ebea5; }
         .btn-kick { background: #53fc18; color: #000; }
-        .btn-tiktok { background: #000000; border: 1px solid #ff0050; box-shadow: 2px 2px 0px #00f2ea, -2px -2px 0px #ff0050; }
+        .btn-tiktok { background: #000000; border: 1px solid #ff0050; }
 
-        .share-fab {
-            position: fixed; bottom: 20px; right: 20px;
-            background-color: #25D366; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 9999;
-        }
+        .share-fab { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; }
 
         @media (min-width: 900px) {
-            .main-container { flex-direction: row; height: 85vh; }
+            .main-container { flex-direction: row; height: 80vh; }
             .left-column { flex: 1.8; overflow-y: auto; }
             .chat-section { flex: 1; height: auto; }
         }
@@ -114,9 +84,7 @@
                 <span class="live-badge">REPRODUCTOR 24/7 (AUDIO SOLO)</span>
                 
                 <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="FF7B00" data-channelId="a0a1e836-5c29-4d57-8ea8-8fe24f90292d" data-rendered="false" class="cstrEmbed">
-                    <a href="https://www.caster.fm">Shoutcast Hosting</a> 
-                    <a href="https://www.caster.fm">Stream Hosting</a> 
-                    <a href="https://www.caster.fm">Radio Server Hosting</a>
+                <a href="https://www.caster.fm">Shoutcast Hosting</a> <a href="https://www.caster.fm">Stream Hosting</a> <a href="https://www.caster.fm">Radio Server Hosting</a>
                 </div>
                 </section>
         </div>
@@ -134,24 +102,16 @@
             <p>🎵 Pedí tu tema favorito:</p>
             <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">💬 WhatsApp</a>
         </div>
-
         <div class="glass-text">
             <p>🔥 Seguinos en nuestras redes:</p>
             <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">💚 Seguir en KICK</a>
-                <a href="https://www.tiktok.com/@zonda.fm" class="btn btn-tiktok" target="_blank">📱 Seguir en TIKTOK</a>
+                <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">💚 KICK</a>
+                <a href="https://www.tiktok.com/@zonda.fm" class="btn btn-tiktok" target="_blank">📱 TIKTOK</a>
             </div>
         </div>
     </footer>
 
     <a href="whatsapp://send?text=Escuchá Zonda FM Mendoza 📻: https://zondafmmdz.netlify.app" class="share-fab">
-        <svg viewBox="0 0 448 512" width="30" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 1
-
-
-
-
-
-
-
+        <svg viewBox="0 0 448 512" width="30" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3
 
 
