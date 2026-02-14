@@ -11,7 +11,9 @@
 
     <link rel="icon" type="image/png" href="./logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <link href="https://unpkg.com/@videojs/themes@1.0.1/city/index.css" rel="stylesheet">
     
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -23,7 +25,7 @@
         }
 
         .logo-header { text-align: center; margin: 10px 0; }
-        .logo-header img { width: 150px; height: auto; filter: drop-shadow(0px 0px 15px rgba(255, 157, 0, 0.5)); }
+        .logo-header img { width: 160px; height: auto; filter: drop-shadow(0px 0px 15px rgba(255, 123, 0, 0.5)); }
 
         .main-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1200px; }
         .left-column { display: flex; flex-direction: column; gap: 15px; width: 100%; }
@@ -36,23 +38,26 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
 
+        /* Reproductor Modernizado */
         .video-wrapper { position: relative; width: 100%; background: #000; }
-        .video-js { width: 100% !important; height: auto !important; aspect-ratio: 16/9; }
+        .vjs-theme-city { width: 100% !important; height: auto !important; aspect-ratio: 16/9; }
+        .vjs-theme-city .vjs-big-play-button { background-color: #FF7B00 !important; border-radius: 50% !important; width: 80px !important; height: 80px !important; line-height: 80px !important; margin-top: -40px !important; margin-left: -40px !important; }
+        .vjs-theme-city .vjs-play-progress { background-color: #FF7B00 !important; }
 
-        /* Sección de botones compacta debajo del video */
-        .controls-section { padding: 15px; text-align: center; background: rgba(20, 20, 35, 0.8); }
-        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; margin-bottom: 15px; display: inline-block; }
+        .controls-section { padding: 20px; text-align: center; background: rgba(20, 20, 35, 0.8); }
+        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 12px; border-radius: 6px; margin-bottom: 15px; display: inline-block; animation: pulse 2s infinite; }
 
-        .btn-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 5px; }
-        .btn-sm { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: white; padding: 10px 5px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; transition: 0.2s; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+
+        /* Botones sociales optimizados */
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn-sm { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: white; padding: 15px; border-radius: 15px; font-size: 0.9rem; font-weight: 700; transition: 0.2s; }
         .btn-sm:active { transform: scale(0.95); }
-        
-        .btn-wsap { background: #1ebea5; }
-        .btn-kick { background: #53fc18; color: #000; }
-        .btn-tiktok { background: #000000; border: 1px solid #ff0050; }
+        .btn-wsap { background: #1ebea5; box-shadow: 0 4px 15px rgba(30, 190, 165, 0.3); }
+        .btn-tiktok { background: #000; border: 1px solid #ff0050; box-shadow: 0 4px 15px rgba(255, 0, 80, 0.2); }
 
-        .chat-section { width: 100%; min-height: 450px; background: #fff; display: flex; flex-direction: column; }
-        .chat-header { background: #FF7B00; color: #000; padding: 8px; font-weight: 800; font-size: 0.75rem; text-align: center; }
+        .chat-section { width: 100%; min-height: 500px; background: #fff; display: flex; flex-direction: column; }
+        .chat-header { background: #FF7B00; color: #000; padding: 10px; font-weight: 800; font-size: 0.8rem; text-align: center; }
         .chat-container { flex: 1; width: 100%; position: relative; }
         .chat-container iframe { width: 100%; height: 100%; border: none; }
 
@@ -73,7 +78,7 @@
         <div class="left-column">
             <section class="glass-panel">
                 <div class="video-wrapper">
-                    <video id="live-stream" class="video-js vjs-default-skin vjs-big-play-centered" 
+                    <video id="live-stream" class="video-js vjs-theme-city" 
                            controls preload="auto" poster="./logo.png" 
                            playsinline webkit-playsinline
                            data-setup='{"fluid": true}'>
@@ -82,16 +87,13 @@
                 </div>
 
                 <div class="controls-section">
-                    <span class="live-badge">EN VIVO</span>
+                    <span class="live-badge">● EN VIVO</span>
                     <div class="btn-grid">
                         <a href="https://wa.me/2616816574" class="btn-sm btn-wsap" target="_blank">
-                            <span>WhatsApp</span>
-                        </a>
-                        <a href="https://kick.com/zondafm" class="btn-sm btn-kick" target="_blank">
-                            <span>Kick</span>
+                            WhatsApp
                         </a>
                         <a href="https://www.tiktok.com/@zonda.fm" class="btn-sm btn-tiktok" target="_blank">
-                            <span>TikTok</span>
+                            TikTok
                         </a>
                     </div>
                 </div>
@@ -99,7 +101,7 @@
         </div>
 
         <section class="glass-panel chat-section">
-            <div class="chat-header">🗨️ COMUNIDAD</div>
+            <div class="chat-header">🗨️ COMUNIDAD ZONDA</div>
             <div class="chat-container">
                 <iframe src="https://www3.cbox.ws/box/?boxid=3551487&boxtag=NAVD0a" allowtransparency="yes" allow="autoplay" frameborder="0" marginwidth="0" scrolling="auto"></iframe>
             </div>
@@ -108,10 +110,9 @@
 
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <script>
-        // Registrar Service Worker para que funcione la PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW error', err));
+                navigator.serviceWorker.register('./sw.js');
             });
         }
     </script>
