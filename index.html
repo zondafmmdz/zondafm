@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zonda FM - Sentí el Viento</title>
     
-    <meta property="og:title" content="Zonda FM - Sentí el Viento">
-    <meta property="og:description" content="Escuchanos en vivo desde Mendoza. La radio que te acompaña con la mejor música las 24hs.">
-    <meta property="og:image" content="./logo.png">
-    <meta property="og:url" content="https://zondafm.duckdns.org">
-    <meta property="og:type" content="website">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#252545">
+    <link rel="apple-touch-icon" href="./logo.png">
 
     <link rel="icon" type="image/png" href="./logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-    
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     
     <style>
@@ -25,47 +22,39 @@
             color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        .logo-header { text-align: center; margin: 15px 0; }
-        .logo-header img { width: 180px; height: auto; filter: drop-shadow(0px 0px 20px rgba(255, 157, 0, 0.6)); }
+        .logo-header { text-align: center; margin: 10px 0; }
+        .logo-header img { width: 150px; height: auto; filter: drop-shadow(0px 0px 15px rgba(255, 157, 0, 0.5)); }
 
-        .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1200px; }
-        .left-column { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .main-container { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1200px; }
+        .left-column { display: flex; flex-direction: column; gap: 15px; width: 100%; }
 
         .glass-panel { 
             background: rgba(255, 255, 255, 0.04); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
             border-radius: 24px; overflow: hidden; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
 
-        .video-wrapper { position: relative; width: 100%; background: #000; overflow: hidden; }
+        .video-wrapper { position: relative; width: 100%; background: #000; }
         .video-js { width: 100% !important; height: auto !important; aspect-ratio: 16/9; }
 
-        .audio-section { padding: 25px 15px; text-align: center; background: #141423; border-top: 3px solid #FF7B00; }
-        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 10px; border-radius: 5px; margin-bottom: 5px; display: inline-block; }
+        /* Sección de botones compacta debajo del video */
+        .controls-section { padding: 15px; text-align: center; background: rgba(20, 20, 35, 0.8); }
+        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; margin-bottom: 15px; display: inline-block; }
 
-        .chat-section { 
-            width: 100%; 
-            min-height: 500px;
-            background: #fff; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .chat-header { background: #FF7B00; color: #000; padding: 10px; font-weight: 800; font-size: 0.8rem; text-align: center; text-transform: uppercase; }
-        .chat-container { flex: 1; width: 100%; position: relative; }
-        .chat-container iframe { width: 100%; height: 100%; border: none; display: block; }
-
-        .info-footer { width: 100%; max-width: 1200px; margin: 30px 0; display: grid; grid-template-columns: 1fr; gap: 15px; }
-        @media (min-width: 768px) { .info-footer { grid-template-columns: 1fr 1fr; } }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 5px; }
+        .btn-sm { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: white; padding: 10px 5px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; transition: 0.2s; }
+        .btn-sm:active { transform: scale(0.95); }
         
-        .glass-text { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 157, 0, 0.2); text-align: center; }
-        
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; padding: 14px; border-radius: 12px; font-weight: 700; margin-top: 10px; transition: transform 0.2s; }
-        .btn:active { transform: scale(0.95); }
         .btn-wsap { background: #1ebea5; }
         .btn-kick { background: #53fc18; color: #000; }
         .btn-tiktok { background: #000000; border: 1px solid #ff0050; }
+
+        .chat-section { width: 100%; min-height: 450px; background: #fff; display: flex; flex-direction: column; }
+        .chat-header { background: #FF7B00; color: #000; padding: 8px; font-weight: 800; font-size: 0.75rem; text-align: center; }
+        .chat-container { flex: 1; width: 100%; position: relative; }
+        .chat-container iframe { width: 100%; height: 100%; border: none; }
 
         @media (min-width: 900px) {
             .main-container { flex-direction: row; align-items: stretch; }
@@ -87,40 +76,44 @@
                     <video id="live-stream" class="video-js vjs-default-skin vjs-big-play-centered" 
                            controls preload="auto" poster="./logo.png" 
                            playsinline webkit-playsinline
-                           data-setup='{"fluid": true, "playbackRates": [1]}'>
+                           data-setup='{"fluid": true}'>
                         <source src="/hls/mistream.m3u8" type="application/x-mpegURL">
                     </video>
                 </div>
-            </section>
 
-            <section class="glass-panel audio-section">
-                <span class="live-badge">SENTÍ EL VIENTO</span>
-                <p style="margin: 10px 0 0 0; font-size: 0.9rem; opacity: 0.8;">Mendoza, Argentina</p>
-                </section>
+                <div class="controls-section">
+                    <span class="live-badge">EN VIVO</span>
+                    <div class="btn-grid">
+                        <a href="https://wa.me/2616816574" class="btn-sm btn-wsap" target="_blank">
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="https://kick.com/zondafm" class="btn-sm btn-kick" target="_blank">
+                            <span>Kick</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@zonda.fm" class="btn-sm btn-tiktok" target="_blank">
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <section class="glass-panel chat-section">
-            <div class="chat-header">🗨️ Chat de la Comunidad</div>
+            <div class="chat-header">🗨️ COMUNIDAD</div>
             <div class="chat-container">
                 <iframe src="https://www3.cbox.ws/box/?boxid=3551487&boxtag=NAVD0a" allowtransparency="yes" allow="autoplay" frameborder="0" marginwidth="0" scrolling="auto"></iframe>
             </div>
         </section>
     </main>
 
-    <footer class="info-footer">
-        <div class="glass-text">
-            <p>🎵 Pedí tu tema favorito:</p>
-            <a href="https://wa.me/2616816574" class="btn btn-wsap" target="_blank">💬 WhatsApp</a>
-        </div>
-        <div class="glass-text">
-            <p>🔥 Seguinos en nuestras redes:</p>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="https://kick.com/zondafm" class="btn btn-kick" target="_blank">💚 KICK</a>
-                <a href="https://www.tiktok.com/@zonda.fm" class="btn btn-tiktok" target="_blank">📱 TIKTOK</a>
-            </div>
-        </div>
-    </footer>
-
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <script>
+        // Registrar Service Worker para que funcione la PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW error', err));
+            });
+        }
+    </script>
 </body>
 </html>
