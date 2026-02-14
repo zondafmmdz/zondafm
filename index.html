@@ -26,7 +26,6 @@
 
         .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1100px; }
 
-        /* REPRODUCTOR ESTILO MODERNO */
         .glass-panel { 
             background: rgba(255, 255, 255, 0.04); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
@@ -36,11 +35,9 @@
         }
 
         .video-wrapper { position: relative; width: 100%; background: #000; aspect-ratio: 16/9; }
-        
-        /* Personalización de Video.js para que sea como la foto */
         .video-js { width: 100% !important; height: 100% !important; }
         
-        /* Botón Play Naranja Gigante y Centrado */
+        /* Botón Play Naranja Gigante Centrado */
         .vjs-big-play-button {
             top: 50% !important; left: 50% !important;
             transform: translate(-50%, -50%) !important;
@@ -51,20 +48,16 @@
             font-size: 3.5em !important;
         }
 
-        /* Barra de progreso Naranja */
         .vjs-play-progress, .vjs-volume-level { background-color: #FF7B00 !important; }
-        .vjs-control-bar { background: rgba(0,0,0,0.7) !important; height: 50px !important; }
 
-        /* Botones de Redes Sociales */
         .controls-section { padding: 20px; background: rgba(20, 20, 35, 0.6); }
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .btn-sm { display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 15px; text-decoration: none; color: white; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
         .btn-wsap { background: #1ebea5; box-shadow: 0 5px 15px rgba(30, 190, 165, 0.3); }
         .btn-tiktok { background: #000; border: 1px solid #ff0050; }
 
-        /* CHAT AJUSTADO */
         .chat-section { width: 100%; height: 450px; background: #fff; display: flex; flex-direction: column; border-radius: 28px; }
-        .chat-header { background: #FF7B00; color: #000; padding: 12px; font-weight: 800; text-align: center; font-size: 0.8rem; letter-spacing: 1px; }
+        .chat-header { background: #FF7B00; color: #000; padding: 12px; font-weight: 800; text-align: center; font-size: 0.8rem; }
         .chat-container { flex: 1; position: relative; }
         .chat-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
@@ -110,13 +103,14 @@
 
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <script>
+        // Registrar Service Worker para PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js');
         }
 
         const player = videojs('live-stream');
 
-        // Configuración para que el celular reconozca el audio de fondo
+        // 1. MediaSession para controles en bloqueo y notificaciones
         if ('mediaSession' in navigator) {
             player.on('play', () => {
                 navigator.mediaSession.metadata = new MediaMetadata({
@@ -124,9 +118,39 @@
                     artist: 'Mendoza, Argentina',
                     artwork: [{ src: './logo.png', sizes: '512x512', type: 'image/png' }]
                 });
+                navigator.mediaSession.playbackState = 'playing';
+            });
+            player.on('pause', () => {
+                navigator.mediaSession.playbackState = 'paused';
             });
         }
+
+        // 2. DOBLE VERIFICACIÓN: Anti-Sleep Loop
+        let antiSleepInterval;
+
+        player.on('play', () => {
+            if (!antiSleepInterval) {
+                antiSleepInterval = setInterval(() => {
+                    if (player.paused() && !player.ended()) {
+                        player.play().catch(() => {});
+                    }
+                }, 1000);
+            }
+        });
+
+        player.on('pause', () => {
+            clearInterval(antiSleepInterval);
+            antiSleepInterval = null;
+        });
+
+        // Forzar play al cambiar visibilidad
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === 'hidden' && !player.paused()) {
+                player.play();
+            }
+        });
     </script>
 </body>
 </html>
+
 
