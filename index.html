@@ -39,14 +39,12 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.6); 
         }
 
-        /* Video responsivo ajustado */
         .video-wrapper { position: relative; width: 100%; background: #000; overflow: hidden; }
         .video-js { width: 100% !important; height: auto !important; aspect-ratio: 16/9; }
 
         .audio-section { padding: 25px 15px; text-align: center; background: #141423; border-top: 3px solid #FF7B00; }
-        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 10px; border-radius: 5px; margin-bottom: 20px; display: inline-block; }
+        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 10px; border-radius: 5px; margin-bottom: 5px; display: inline-block; }
 
-        /* Chat responsivo */
         .chat-section { 
             width: 100%; 
             min-height: 500px;
@@ -87,20 +85,18 @@
             <section class="glass-panel">
                 <div class="video-wrapper">
                     <video id="live-stream" class="video-js vjs-default-skin vjs-big-play-centered" 
-                           controls preload="auto" poster="./logo.png" data-setup='{"fluid": true}'>
+                           controls preload="auto" poster="./logo.png" 
+                           playsinline webkit-playsinline
+                           data-setup='{"fluid": true, "playbackRates": [1]}'>
                         <source src="/hls/mistream.m3u8" type="application/x-mpegURL">
-                        <p class="vjs-no-js">Para ver este video, habilite JavaScript.</p>
                     </video>
                 </div>
             </section>
 
             <section class="glass-panel audio-section">
-                <span class="live-badge">RADIO EN VIVO 24/7</span>
-                <div data-type="newStreamPlayer" data-publicToken="f9596676-a89f-4cdd-9d4f-450f1713cd56" data-theme="dark" data-color="FF7B00" class="cstrEmbed">
-                    <a href="https://www.caster.fm">Radio Server Hosting</a>
-                </div>
-                <script src="//cdn.cloud.caster.fm//widgets/embed.js"></script>
-            </section>
+                <span class="live-badge">SENTÍ EL VIENTO</span>
+                <p style="margin: 10px 0 0 0; font-size: 0.9rem; opacity: 0.8;">Mendoza, Argentina</p>
+                </section>
         </div>
 
         <section class="glass-panel chat-section">
