@@ -38,18 +38,13 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
 
-        /* Reproductor Modernizado */
         .video-wrapper { position: relative; width: 100%; background: #000; }
         .vjs-theme-city { width: 100% !important; height: auto !important; aspect-ratio: 16/9; }
         .vjs-theme-city .vjs-big-play-button { background-color: #FF7B00 !important; border-radius: 50% !important; width: 80px !important; height: 80px !important; line-height: 80px !important; margin-top: -40px !important; margin-left: -40px !important; }
         .vjs-theme-city .vjs-play-progress { background-color: #FF7B00 !important; }
 
         .controls-section { padding: 20px; text-align: center; background: rgba(20, 20, 35, 0.8); }
-        .live-badge { background: #FF7B00; color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 12px; border-radius: 6px; margin-bottom: 15px; display: inline-block; animation: pulse 2s infinite; }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-
-        /* Botones sociales optimizados */
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .btn-sm { display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: white; padding: 15px; border-radius: 15px; font-size: 0.9rem; font-weight: 700; transition: 0.2s; }
         .btn-sm:active { transform: scale(0.95); }
@@ -87,14 +82,9 @@
                 </div>
 
                 <div class="controls-section">
-                    <span class="live-badge">● EN VIVO</span>
                     <div class="btn-grid">
-                        <a href="https://wa.me/2616816574" class="btn-sm btn-wsap" target="_blank">
-                            WhatsApp
-                        </a>
-                        <a href="https://www.tiktok.com/@zonda.fm" class="btn-sm btn-tiktok" target="_blank">
-                            TikTok
-                        </a>
+                        <a href="https://wa.me/2616816574" class="btn-sm btn-wsap" target="_blank">WhatsApp</a>
+                        <a href="https://www.tiktok.com/@zonda.fm" class="btn-sm btn-tiktok" target="_blank">TikTok</a>
                     </div>
                 </div>
             </section>
@@ -110,11 +100,39 @@
 
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <script>
+        // Registro de Service Worker
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js');
-            });
+            navigator.serviceWorker.register('./sw.js');
         }
+
+        // CONTROL DE BACKGROUND AUDIO (MediaSession API)
+        const video = document.getElementById('live-stream_html5_api'); 
+        // Nota: Video.js le pone ese ID al elemento nativo
+        
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: 'Zonda FM - En Vivo',
+                artist: 'Mendoza, Argentina',
+                album: 'Sentí el Viento',
+                artwork: [
+                    { src: './logo.png', sizes: '512x512', type: 'image/png' }
+                ]
+            });
+
+            navigator.mediaSession.setActionHandler('play', () => { document.querySelector('video').play(); });
+            navigator.mediaSession.setActionHandler('pause', () => { document.querySelector('video').pause(); });
+        }
+
+        // Truco para evitar la pausa al minimizar en algunos Android
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                // Si el sistema intenta pausar, forzamos play (con un leve delay)
+                setTimeout(() => {
+                    const v = document.querySelector('video');
+                    if (v.paused && !v.ended) v.play();
+                }, 100);
+            }
+        });
     </script>
 </body>
 </html>
