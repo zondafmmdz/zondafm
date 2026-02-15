@@ -2,185 +2,67 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>Zonda FM - Sentí el Viento</title>
-    <meta name="description" content="Radio Zonda FM - Transmitiendo en vivo desde Mendoza.">
-    <meta property="og:title" content="Zonda FM - Sentí el Viento">
-    <meta property="og:description" content="Escuchanos en vivo desde Mendoza. La radio que te acompaña con la mejor música y toda la onda.">
-    <meta property="og:image" content="https://zondafm.duckdns.org/logo.png">
-    <meta property="og:url" content="https://zondafm.duckdns.org">
-    <meta property="og:type" content="website">
-    
-    <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#252545">
-    
-    <link rel="icon" type="image/png" href="./logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
-
-    <script defer src="https://zondafm.duckdns.org/stats/script.js" data-website-id="cfe0fbf7-1dfb-438c-9139-53183f2f9402"></script>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonda FM - En Vivo</title>
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: sans-serif; text-align: center; background: #1a1a1a; color: white; }
+        .container { max-width: 800px; margin: auto; padding: 20px; }
         
-        body {
-            margin: 0; padding: 10px; font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .logo-header { text-align: center; margin: 15px 0; animation: fadeInDown 1s ease; }
-        .logo-header img { width: 140px; height: auto; filter: drop-shadow(0px 0px 15px rgba(255, 123, 0, 0.5)); }
-
-        .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1100px; z-index: 10; }
-
-        .glass-panel { 
+        /* Estilo para que el iframe sea responsivo */
+        .video-responsive {
             position: relative;
-            background: rgba(255, 255, 255, 0.04); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 28px; overflow: hidden; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            width: 100%;
+            border: 0;
         }
 
-        .video-wrapper { position: relative; width: 100%; background: #000; aspect-ratio: 16/9; z-index: 1; }
-        .video-js { width: 100% !important; height: 100% !important; }
-        
-        .vjs-big-play-button {
-            top: 50% !important; left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            width: 80px !important; height: 80px !important;
-            line-height: 80px !important; border-radius: 50% !important;
-            background-color: #FF7B00 !important; border: none !important;
+        .audio-player {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
-
-        .controls-section { padding: 20px; background: rgba(20, 20, 35, 0.6); }
-        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .btn-sm { display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 15px; text-decoration: none; color: white; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
-        
-        .btn-wsap { background: #1ebea5; animation: pulse-green 3s infinite; }
-        .btn-tiktok { background: #000; border: 1px solid #ff0050; animation: pulse-tiktok 4s infinite ease-in-out; }
-
-        .chat-section { width: 100%; height: 450px; background: #222; display: flex; flex-direction: column; border-radius: 28px; }
-        .chat-header { background: #FF7B00; color: #000; padding: 10px; font-weight: 800; text-align: center; }
-        .chat-container { flex: 1; position: relative; }
-        .chat-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(30, 190, 165, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(30, 190, 165, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(30, 190, 165, 0); }
-        }
-
-        @media (min-width: 900px) {
-            .main-container { flex-direction: row; }
-            .left-column { flex: 1.5; }
-            .chat-section { flex: 1; height: auto; }
-        }
+        audio { width: 100%; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <header class="logo-header">
-        <img src="./logo.png" alt="Zonda FM Logo">
-    </header>
+    <div class="container">
+        <h1>Zonda FM en Vivo</h1>
 
-    <main class="main-container">
-        <div class="left-column">
-            <section class="glass-panel">
-                <div class="video-wrapper">
-                    <video id="live-stream" class="video-js vjs-default-skin" 
-                           controls preload="auto" poster="./logo.png" 
-                           playsinline webkit-playsinline>
-                        <source src="https://zondafm.duckdns.org/hls/mistream.m3u8" type="application/x-mpegURL">
-                    </video>
-                </div>
-                <div class="controls-section">
-                    <div class="btn-grid">
-                        <a href="https://wa.me/2616816574" class="btn-sm btn-wsap" target="_blank">WhatsApp</a>
-                        <a href="https://www.tiktok.com/@zonda.fm" class="btn-sm btn-tiktok" target="_blank">TikTok</a>
-                    </div>
-                </div>
-            </section>
+        <div class="video-responsive">
+            <iframe src="https://zondafm.duckdns.org/hls/mistream.m3u8" scrolling="no" allowfullscreen></iframe>
         </div>
 
-        <section class="chat-section glass-panel">
-            <div class="chat-header">🗨️ COMUNIDAD ZONDA</div>
-            <div class="chat-container">
-                <iframe src="https://www3.cbox.ws/box/?boxid=3551487&boxtag=NAVD0a" allowtransparency="yes" allow="autoplay" frameborder="0"></iframe>
-            </div>
-        </section>
-    </main>
+        <div class="audio-player">
+            <h3>Escuchar Solo Audio (Pantalla bloqueada)</h3>
+            <audio id="radioAudio" controls>
+                <source src="https://zondafm.duckdns.org/hls/mistream.m3u8" type="application/x-mpegURL">
+                Tu navegador no soporta streaming de audio.
+            </audio>
+            <p><small>Dale Play aquí para que no se corte al bloquear el celu.</small></p>
+        </div>
+    </div>
 
-    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <script>
-        const player = videojs('live-stream');
-        let wakeLock = null;
-
-        // 1. FUNCIÓN PARA EVITAR QUE EL CELULAR SE DUERMA (WAKE LOCK)
-        const requestWakeLock = async () => {
-            try {
-                if ('wakeLock' in navigator) {
-                    wakeLock = await navigator.wakeLock.request('screen');
-                }
-            } catch (err) {
-                console.log(`${err.name}, ${err.message}`);
-            }
-        };
-
-        // 2. CONTROLES DE PANTALLA DE BLOQUEO (MEDIA SESSION)
+        // Este bloque ayuda a que el celular identifique el nombre de la radio en la pantalla de bloqueo
         if ('mediaSession' in navigator) {
             navigator.mediaSession.metadata = new MediaMetadata({
-                title: 'Zonda FM - En Vivo',
-                artist: 'Mendoza, Argentina',
-                album: 'Sentí el Viento',
-                artwork: [{ src: 'https://zondafm.duckdns.org/logo.png', sizes: '512x512', type: 'image/png' }]
+                title: 'Zonda FM',
+                artist: 'En Vivo',
+                album: 'Streaming Directo'
             });
-
-            navigator.mediaSession.setActionHandler('play', () => player.play());
-            navigator.mediaSession.setActionHandler('pause', () => player.pause());
-        }
-
-        // 3. EVENTOS DE REPRODUCCIÓN
-        player.on('play', () => {
-            requestWakeLock(); // Activa el bloqueo de suspensión al dar play
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.playbackState = 'playing';
-            }
-        });
-
-        player.on('pause', () => {
-            if (wakeLock !== null) {
-                wakeLock.release();
-                wakeLock = null;
-            }
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.playbackState = 'paused';
-            }
-        });
-
-        // RE-CONEXIÓN AUTOMÁTICA SI HAY LAG
-        player.on('error', () => {
-            setTimeout(() => {
-                player.src({ src: 'https://zondafm.duckdns.org/hls/mistream.m3u8', type: 'application/x-mpegURL' });
-                player.play();
-            }, 3000);
-        });
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js');
         }
     </script>
 </body>
 </html>
+
