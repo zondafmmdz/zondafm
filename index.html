@@ -11,7 +11,6 @@
     <meta property="og:image" content="https://zondafm.duckdns.org/logo.png">
     <meta property="og:url" content="https://zondafm.duckdns.org">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
     
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#252545">
@@ -25,7 +24,6 @@
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        /* BACKGROUND DINÁMICO ANIMADO */
         body {
             margin: 0; padding: 10px; font-family: 'Poppins', sans-serif;
             background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
@@ -42,11 +40,10 @@
         }
 
         .logo-header { text-align: center; margin: 15px 0; animation: fadeInDown 1s ease; }
-        .logo-header img { width: 150px; height: auto; filter: drop-shadow(0px 0px 20px rgba(255, 123, 0, 0.6)); }
+        .logo-header img { width: 140px; height: auto; filter: drop-shadow(0px 0px 15px rgba(255, 123, 0, 0.5)); }
 
         .main-container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1100px; z-index: 10; }
 
-        /* PANELES GLASS CON BRILLO */
         .glass-panel { 
             position: relative;
             background: rgba(255, 255, 255, 0.04); 
@@ -56,67 +53,39 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
-        .glass-panel::after {
-            content: "";
-            position: absolute; top: -50%; left: -100%; width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
-            transform: rotate(45deg);
-            animation: shine 8s infinite linear;
-        }
-
         .video-wrapper { position: relative; width: 100%; background: #000; aspect-ratio: 16/9; z-index: 1; }
         .video-js { width: 100% !important; height: 100% !important; }
         
         .vjs-big-play-button {
             top: 50% !important; left: 50% !important;
             transform: translate(-50%, -50%) !important;
-            width: 90px !important; height: 90px !important;
-            line-height: 90px !important; border-radius: 50% !important;
-            background-color: #FF7B00 !important;
-            border: none !important; box-shadow: 0 0 30px rgba(255, 123, 0, 0.5) !important;
-            font-size: 3.5em !important; transition: 0.3s !important;
+            width: 80px !important; height: 80px !important;
+            line-height: 80px !important; border-radius: 50% !important;
+            background-color: #FF7B00 !important; border: none !important;
         }
 
-        .controls-section { padding: 20px; background: rgba(20, 20, 35, 0.6); position: relative; z-index: 2; }
+        .controls-section { padding: 20px; background: rgba(20, 20, 35, 0.6); }
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .btn-sm { display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 15px; text-decoration: none; color: white; font-weight: 700; font-size: 0.9rem; transition: 0.3s; position: relative; }
+        .btn-sm { display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 15px; text-decoration: none; color: white; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
         
-        /* WHATSAPP PULSE */
-        .btn-wsap { 
-            background: #1ebea5; 
-            box-shadow: 0 5px 15px rgba(30, 190, 165, 0.3);
-            animation: pulse-green 3s infinite;
-        }
-        
-        /* TIKTOK NEON GLOW */
-        .btn-tiktok { 
-            background: #000; 
-            border: 1px solid #ff0050;
-            animation: pulse-tiktok 4s infinite ease-in-out;
-        }
+        .btn-wsap { background: #1ebea5; animation: pulse-green 3s infinite; }
+        .btn-tiktok { background: #000; border: 1px solid #ff0050; animation: pulse-tiktok 4s infinite ease-in-out; }
 
-        /* CHAT SECTION */
-        .chat-section { width: 100%; height: 500px; background: #222; display: flex; flex-direction: column; border-radius: 28px; z-index: 2; }
-        .chat-header { background: #FF7B00; color: #000; padding: 12px; font-weight: 800; text-align: center; font-size: 0.8rem; }
-        .chat-container { flex: 1; position: relative; width: 100%; }
+        .chat-section { width: 100%; height: 450px; background: #222; display: flex; flex-direction: column; border-radius: 28px; }
+        .chat-header { background: #FF7B00; color: #000; padding: 10px; font-weight: 800; text-align: center; }
+        .chat-container { flex: 1; position: relative; }
         .chat-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* ANIMACIONES */
-        @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse-tiktok {
-            0%, 100% { box-shadow: 0 0 5px #ff0050, 0 0 0px #00f2ea; }
-            50% { box-shadow: 0 0 20px #ff0050, 0 0 10px #00f2ea; border-color: #00f2ea; }
-        }
         @keyframes pulse-green {
             0% { box-shadow: 0 0 0 0 rgba(30, 190, 165, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(30, 190, 165, 0); }
+            70% { box-shadow: 0 0 0 10px rgba(30, 190, 165, 0); }
             100% { box-shadow: 0 0 0 0 rgba(30, 190, 165, 0); }
         }
 
         @media (min-width: 900px) {
-            .main-container { flex-direction: row; align-items: stretch; }
-            .left-column { flex: 1.6; }
+            .main-container { flex-direction: row; }
+            .left-column { flex: 1.5; }
             .chat-section { flex: 1; height: auto; }
         }
     </style>
@@ -149,43 +118,69 @@
         <section class="chat-section glass-panel">
             <div class="chat-header">🗨️ COMUNIDAD ZONDA</div>
             <div class="chat-container">
-                <iframe src="https://www3.cbox.ws/box/?boxid=3551487&boxtag=NAVD0a" allowtransparency="yes" allow="autoplay" frameborder="0" marginwidth="0" scrolling="auto"></iframe>
+                <iframe src="https://www3.cbox.ws/box/?boxid=3551487&boxtag=NAVD0a" allowtransparency="yes" allow="autoplay" frameborder="0"></iframe>
             </div>
         </section>
     </main>
 
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <script>
+        const player = videojs('live-stream');
+        let wakeLock = null;
+
+        // 1. FUNCIÓN PARA EVITAR QUE EL CELULAR SE DUERMA (WAKE LOCK)
+        const requestWakeLock = async () => {
+            try {
+                if ('wakeLock' in navigator) {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                }
+            } catch (err) {
+                console.log(`${err.name}, ${err.message}`);
+            }
+        };
+
+        // 2. CONTROLES DE PANTALLA DE BLOQUEO (MEDIA SESSION)
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: 'Zonda FM - En Vivo',
+                artist: 'Mendoza, Argentina',
+                album: 'Sentí el Viento',
+                artwork: [{ src: 'https://zondafm.duckdns.org/logo.png', sizes: '512x512', type: 'image/png' }]
+            });
+
+            navigator.mediaSession.setActionHandler('play', () => player.play());
+            navigator.mediaSession.setActionHandler('pause', () => player.pause());
+        }
+
+        // 3. EVENTOS DE REPRODUCCIÓN
+        player.on('play', () => {
+            requestWakeLock(); // Activa el bloqueo de suspensión al dar play
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.playbackState = 'playing';
+            }
+        });
+
+        player.on('pause', () => {
+            if (wakeLock !== null) {
+                wakeLock.release();
+                wakeLock = null;
+            }
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.playbackState = 'paused';
+            }
+        });
+
+        // RE-CONEXIÓN AUTOMÁTICA SI HAY LAG
+        player.on('error', () => {
+            setTimeout(() => {
+                player.src({ src: 'https://zondafm.duckdns.org/hls/mistream.m3u8', type: 'application/x-mpegURL' });
+                player.play();
+            }, 3000);
+        });
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js');
         }
-
-        const player = videojs('live-stream');
-        
-        // Controles en pantalla de bloqueo
-        if ('mediaSession' in navigator) {
-            player.on('play', () => {
-                navigator.mediaSession.metadata = new MediaMetadata({
-                    title: 'Zonda FM - En Vivo',
-                    artist: 'Mendoza, Argentina',
-                    artwork: [{ src: './logo.png', sizes: '512x512', type: 'image/png' }]
-                });
-            });
-        }
-
-        // Anti-Cortes (Doble Verificación)
-        let antiSleep;
-        player.on('play', () => {
-            antiSleep = setInterval(() => {
-                if (player.paused() && !player.ended()) {
-                    player.play().catch(()=>{});
-                }
-            }, 1000);
-        });
-        player.on('pause', () => clearInterval(antiSleep));
     </script>
 </body>
 </html>
-
-
-
