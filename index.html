@@ -3,66 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zonda FM - En Vivo</title>
+    <title>Zonda FM - Modo Stream</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #1a1a1a; color: white; }
-        .container { max-width: 800px; margin: auto; padding: 20px; }
-        
-        /* Estilo para que el iframe sea responsivo */
-        .video-responsive {
-            position: relative;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .video-responsive iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            width: 100%;
-            border: 0;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; background: #0e0e10; color: #efeff1; height: 100vh; overflow: hidden; }
+
+        /* Contenedor Principal: Grid de 2 columnas */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px; /* Video flexible, Chat fijo de 340px */
+            height: 100vh;
         }
 
-        .audio-player {
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+        /* Área del Video */
+        .video-section {
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
-        audio { width: 100%; margin-top: 10px; }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* Área del Chat */
+        .chat-section {
+            background: #18181b;
+            border-left: 1px solid #2d2d30;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid #2d2d30;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .chat-placeholder {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Reproductor de audio escondido pero funcional para el fondo */
+        .audio-bar {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        audio { height: 30px; width: 300px; opacity: 0.7; }
+
+        /* Adaptación para Celulares */
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                overflow-y: auto;
+            }
+            body { overflow-y: auto; }
+            .chat-section { height: 400px; }
+            .video-section { height: auto; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Zonda FM en Vivo</h1>
+    <div class="main-layout">
+        
+        <section class="video-section">
+            <div class="video-container">
+                <iframe src="https://zondafm.duckdns.org/hls/mistream.m3u8" allowfullscreen></iframe>
+            </div>
+            
+            <div class="audio-bar">
+                <p style="font-size: 12px; margin-right: 10px;">Audio de fondo:</p>
+                <audio controls>
+                    <source src="https://zondafm.duckdns.org/hls/mistream.m3u8" type="application/x-mpegURL">
+                </audio>
+            </div>
+        </section>
 
-        <div class="video-responsive">
-            <iframe src="https://zondafm.duckdns.org/hls/mistream.m3u8" scrolling="no" allowfullscreen></iframe>
-        </div>
+        <section class="chat-section">
+            <div class="chat-header">Chat de la Transmisión</div>
+            <div class="chat-placeholder">
+                <p>Aquí va el chat...</p>
+            </div>
+        </section>
 
-        <div class="audio-player">
-            <h3>Escuchar Solo Audio (Pantalla bloqueada)</h3>
-            <audio id="radioAudio" controls>
-                <source src="https://zondafm.duckdns.org/hls/mistream.m3u8" type="application/x-mpegURL">
-                Tu navegador no soporta streaming de audio.
-            </audio>
-            <p><small>Dale Play aquí para que no se corte al bloquear el celu.</small></p>
-        </div>
     </div>
 
     <script>
-        // Este bloque ayuda a que el celular identifique el nombre de la radio en la pantalla de bloqueo
         if ('mediaSession' in navigator) {
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: 'Zonda FM',
-                artist: 'En Vivo',
-                album: 'Streaming Directo'
+                artist: 'Modo Teatro'
             });
         }
     </script>
 </body>
 </html>
-
