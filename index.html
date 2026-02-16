@@ -109,7 +109,9 @@
             body { overflow-y: auto; }
         }
     </style>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 </head>
+
 <body>
 
     <div class="main-layout">
@@ -136,15 +138,42 @@
 
         <section class="chat-sidebar">
             <div class="chat-title">Chat de la Comunidad</div>
-            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center;">
-                <div style="background: #1f1f23; padding: 20px; border-radius: 12px; border: 1px dashed #3a3a3d;">
-                    <p style="color: #bf94ff; font-weight: 600; margin-bottom: 5px;">¡Próximamente!</p>
-                    <p style="font-size: 0.85rem; color: #adadb8;">Estamos configurando el chat para la comunidad de Zonda FM.</p>
+            <div id="chat-mensajes" style="flex-grow: 1; overflow-y: auto; padding: 15px; font-size: 0.9rem;">
                 </div>
+            <div style="padding: 15px; border-top: 1px solid #2d2d30;">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." 
+                       style="width: 100%; padding: 10px; border-radius: 5px; border: none; background: #2d2d30; color: white;">
             </div>
         </section>
+
+        <script>
+            const socket = io('http://zondafm.duckdns.org:3000');
+            const input = document.getElementById('chat-input');
+            const cajaMensajes = document.getElementById('chat-mensajes');
+            const miUsuario = "Oyente_" + Math.floor(Math.random() * 1000);
+        
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && input.value.trim() !== "") {
+                    socket.emit('enviar-mensaje', {
+                        user: miUsuario,
+                        texto: input.value,
+                        color: '#bf94ff'
+                    });
+                    input.value = "";
+                }
+            });
+        
+            socket.on('mensaje-nuevo', (data) => {
+                const item = document.createElement('div');
+                item.style.marginBottom = "8px";
+                item.innerHTML = `<strong style="color:${data.color}">${data.user}:</strong> <span>${data.texto}</span>`;
+                cajaMensajes.appendChild(item);
+                cajaMensajes.scrollTop = cajaMensajes.scrollHeight; // Auto-scroll
+            });
+        </script>
     </div>
 
 </body>
 </html>
+
 
