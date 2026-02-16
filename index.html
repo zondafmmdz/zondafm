@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zonda FM - En Vivo</title>
-    
     <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0e0e10; color: #efeff1; height: 100vh; overflow: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #0b0b0d; color: #efeff1; height: 100vh; overflow: hidden; }
 
         .main-layout {
             display: grid;
-            grid-template-columns: 1fr 340px;
+            grid-template-columns: 1fr 350px;
             height: 100vh;
         }
 
@@ -21,31 +21,38 @@
         .video-section {
             display: flex;
             flex-direction: column;
-            background: #000;
+            background: radial-gradient(circle at center, #1a1a1c 0%, #000 100%);
+            padding: 10px;
         }
 
         .header-bar {
-            height: 64px;
-            background: #18181b;
+            height: 70px;
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             padding: 0 20px;
-            border-bottom: 1px solid #2d2d30;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 10px;
         }
 
         .header-bar img {
-            height: 45px;
-            width: 45px;
+            height: 50px;
+            width: 50px;
             margin-right: 15px;
-            border: 2px solid #bf94ff;
+            border: 2px solid #9147ff; /* Morado estilo Twitch */
             border-radius: 50%;
-            object-fit: cover;
+            padding: 2px;
+            background: #000;
         }
 
         .video-container {
             flex-grow: 1;
             position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             background: #000;
         }
 
@@ -60,31 +67,45 @@
         }
 
         .chat-title {
-            padding: 15px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            padding: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             font-weight: 700;
             text-align: center;
-            background: #1f1f23;
             border-bottom: 1px solid #2d2d30;
             color: #adadb8;
         }
 
-        /* REPRODUCTOR OCULTO (ELIMINADO VISUALMENTE) */
+        /* TRUCO AUDIO INVISIBLE */
         #bg-audio-player {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 1px;
-            height: 1px;
-            opacity: 0; /* Totalmente invisible */
-            pointer-events: none;
+            visibility: hidden;
+            width: 0; height: 0;
         }
 
-        /* Responsivo para móviles */
-        @media (max-width: 900px) {
+        /* LIVE BADGE */
+        .live-badge {
+            background: #eb0400;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 10px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 1000px) {
             .main-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow-y: auto; }
-            .chat-sidebar { height: 400px; border-left: none; border-top: 1px solid #2d2d30; }
+            .chat-sidebar { height: 500px; }
             body { overflow-y: auto; }
         }
     </style>
@@ -95,33 +116,34 @@
         <section class="video-section">
             <header class="header-bar">
                 <img src="logo.png" alt="Zonda Logo">
-                <div>
-                    <h1 style="font-size: 1rem; color: #efeff1; font-weight: 600;">ZONDA FM - EN VIVO</h1>
+                <div style="flex-grow: 1;">
                     <div style="display: flex; align-items: center;">
-                        <span style="height: 8px; width: 8px; background: #eb0400; border-radius: 50%; margin-right: 6px;"></span>
-                        <p style="font-size: 0.75rem; color: #adadb8; font-weight: 400;">Transmisión Oficial</p>
+                        <h1 style="font-size: 1.1rem; font-weight: 700;">ZONDA FM</h1>
+                        <span class="live-badge">En Vivo</span>
                     </div>
+                    <p style="font-size: 0.8rem; color: #adadb8;">Streaming HD desde San Juan</p>
                 </div>
             </header>
 
             <div class="video-container">
                 <iframe src="https://zondafm.duckdns.org/hls/mistream.m3u8" allowfullscreen></iframe>
                 
-                <audio id="bg-audio-player" autoplay controls>
+                <audio id="bg-audio-player" autoplay controls loop>
                     <source src="https://zondafm.duckdns.org/hls/mistream.m3u8" type="application/x-mpegURL">
                 </audio>
             </div>
         </section>
 
         <section class="chat-sidebar">
-            <div class="chat-title">CHAT DE LA COMUNIDAD</div>
-            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #555; padding: 20px;">
-                <p style="font-size: 0.9rem; margin-bottom: 10px;">¡Bienvenido al chat!</p>
-                <p style="font-size: 0.8rem; text-align: center;">El chat se activará pronto para todos los oyentes.</p>
+            <div class="chat-title">Chat de la Comunidad</div>
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center;">
+                <div style="background: #1f1f23; padding: 20px; border-radius: 12px; border: 1px dashed #3a3a3d;">
+                    <p style="color: #bf94ff; font-weight: 600; margin-bottom: 5px;">¡Próximamente!</p>
+                    <p style="font-size: 0.85rem; color: #adadb8;">Estamos configurando el chat para la comunidad de Zonda FM.</p>
+                </div>
             </div>
         </section>
     </div>
 
 </body>
 </html>
-
